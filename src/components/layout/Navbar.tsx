@@ -33,9 +33,8 @@ export const Navbar: React.FC = () => {
               alt="Pohewala Logo"
               width={370}
               height={103}
+              priority
               className="w-[185px] h-[51.5px] object-contain"
-              loading="eager"
-              fetchPriority="high"
             />
           </div>
         </Link>
