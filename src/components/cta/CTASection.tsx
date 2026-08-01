@@ -57,11 +57,12 @@ export const CTASection: React.FC = () => {
 
           <div className="flex flex-col items-center lg:items-start justify-center w-full lg:w-auto mt-3 md:mt-4 lg:mt-0 lg:py-8">
             <motion.div variants={itemVariants}>
-              <div
-                className={`${playfair.className} font-bold text-[18px] sm:text-[20px] lg:text-[22px] text-black bg-white rounded-full px-6 sm:px-8 py-2.5 sm:py-3 mb-4 sm:mb-5 lg:mb-8 shadow-[0_4px_12px_rgba(0,0,0,.06)]`}
+              <a
+                href="/contact"
+                className={`${playfair.className} inline-block font-bold text-[18px] sm:text-[20px] lg:text-[22px] text-black bg-white rounded-full px-6 sm:px-8 py-2.5 sm:py-3 mb-4 sm:mb-5 lg:mb-8 shadow-[0_4px_12px_rgba(0,0,0,.06)] hover:scale-105 active:scale-95 transition-transform duration-200`}
               >
                 Enquire Now
-              </div>
+              </a>
             </motion.div>
             <motion.h2
               variants={itemVariants}
@@ -84,7 +85,8 @@ export const CTASection: React.FC = () => {
             variants={itemVariants}
             className="absolute top-[-20px] sm:top-[-24px] md:top-[-28px] lg:top-[-50px] right-3 sm:right-4"
           >
-            <button
+            <a
+              href="tel:+919923000480"
               className="w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] bg-white rounded-full shadow-[0_10px_30px_rgba(0,0,0,.12)] flex items-center justify-center hover:scale-105 hover:rotate-[8deg] active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50 transition-all duration-300 cursor-pointer call-btn"
               aria-label="Call to enquire about franchise"
             >
@@ -92,7 +94,7 @@ export const CTASection: React.FC = () => {
                 strokeWidth={2}
                 className="text-black w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] md:w-[36px] md:h-[36px] lg:w-[52px] lg:h-[52px]"
               />
-            </button>
+            </a>
           </motion.div>
         </div>
       </motion.div>
