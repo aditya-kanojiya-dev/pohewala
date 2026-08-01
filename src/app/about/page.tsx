@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { LeadersSection } from "@/components/about/LeadersSection";
 import { FromSimpleIdeaSection } from "@/components/about/FromSimpleIdeaSection";
@@ -155,7 +155,7 @@ export default function AboutPage() {
 
         <div
           ref={containerRef}
-          className="relative flex flex-col lg:flex-row justify-center items-center gap-y-14 lg:gap-x-24"
+          className="relative flex flex-col lg:flex-row justify-center items-center lg:gap-x-24"
         >
           {flowPath.d && (
             <svg
@@ -184,20 +184,18 @@ export default function AboutPage() {
           {strivePoints.map((item, i) => {
             const highlighted = item.variant === "highlighted";
             return (
-              <motion.div
-                key={item.title}
-                variants={fadeUp}
-                className="relative flex flex-col items-center text-center"
-              >
+              <Fragment key={item.title}>
+                <motion.div
+                  variants={fadeUp}
+                  className="relative flex flex-col items-center text-center"
+                >
                 {/* Front circle */}
                 <div
                   ref={(el) => {
                     circleRefs.current[i] = el;
                   }}
-                  className={`relative rounded-full flex flex-col items-center justify-center text-center px-8 pt-12 pb-10 gap-3.5 border-[3px] border-neutral-950 ${
-                    highlighted
-                      ? "bg-[#E6DA34] w-[260px] h-[260px] lg:w-[300px] lg:h-[300px] shadow-[10px_10px_0_0_rgba(0,0,0,0.45)]"
-                      : "bg-white w-[240px] h-[240px] lg:w-[270px] lg:h-[270px] shadow-[10px_10px_0_0_rgba(0,0,0,0.45)]"
+                  className={`relative rounded-full flex flex-col items-center justify-center text-center px-7 pt-12 pb-8 gap-2.5 border-[3px] border-neutral-950 w-[280px] h-[280px] lg:w-[320px] lg:h-[320px] shadow-[10px_10px_0_0_rgba(0,0,0,0.45)] ${
+                    highlighted ? "bg-[#E6DA34]" : "bg-white"
                   }`}
                 >
                   <span
@@ -208,11 +206,11 @@ export default function AboutPage() {
                     {i + 1}
                   </span>
                   <span
-                    className={`w-16 h-16 rounded-full flex items-center justify-center border-[3px] border-neutral-950 ${
+                    className={`w-14 h-14 rounded-full flex items-center justify-center border-[3px] border-neutral-950 ${
                       highlighted ? "bg-white" : "bg-[#E6DA34]"
                     }`}
                   >
-                    <item.icon className="w-8 h-8 text-neutral-900" strokeWidth={2.5} />
+                    <item.icon className="w-7 h-7 text-neutral-900" strokeWidth={2.5} />
                   </span>
                   <span
                     className={`font-black text-lg tracking-wide font-serif ${
@@ -222,14 +220,18 @@ export default function AboutPage() {
                     {item.title}
                   </span>
                   <p
-                    className={`text-sm leading-relaxed max-w-[220px] font-medium ${
+                    className={`text-xs leading-relaxed max-w-[240px] font-medium ${
                       highlighted ? "text-neutral-900" : "text-neutral-800"
                     }`}
                   >
                     {item.desc}
                   </p>
                 </div>
-              </motion.div>
+                </motion.div>
+                {i < strivePoints.length - 1 && (
+                  <span className="lg:hidden h-14 border-l-2 border-dashed border-[#E6DA34]/70" />
+                )}
+              </Fragment>
             );
           })}
         </div>

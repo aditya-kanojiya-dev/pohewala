@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -43,6 +43,33 @@ const milestones = [
 ];
 
 export const FromSimpleIdeaSection: React.FC = () => {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setActive((i) => (i + 1) % milestones.length), 4000);
+    return () => clearInterval(t);
+  }, []);
+
+  const milestoneCard = (m: (typeof milestones)[number], idx: number) => (
+    <>
+      <span className="w-0.5 h-10 sm:h-12 border-l-2 border-dashed border-[#E6DA34]/70" />
+      <span
+        className="milestone-badge bg-white text-neutral-950 font-black text-2xl px-8 py-2 rounded-full border-[3px] border-neutral-950 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]"
+        style={{ animationDelay: `${idx * 4 + 2}s` }}
+      >
+        {m.year}
+      </span>
+      <span className="bg-[#E6DA34] text-neutral-950 font-bold text-sm px-4 py-1.5 rounded-full border-[3px] border-neutral-950 mt-4 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
+        {m.title}
+      </span>
+      <div className="mt-5 bg-[#E6DA34] text-neutral-900 rounded-2xl p-5 w-full border-[3px] border-neutral-950 shadow-[6px_6px_0_0_rgba(0,0,0,0.45)] hover:-translate-y-1 transition-transform duration-300">
+        <p className="text-xs leading-relaxed font-medium">
+          {m.desc}
+        </p>
+      </div>
+    </>
+  );
+
   return (
     <section className="w-full">
       <style>{`
@@ -74,8 +101,9 @@ export const FromSimpleIdeaSection: React.FC = () => {
           92% { transform: scale(1) rotate(0deg); }
         }
         @keyframes card-react {
-          0%, 7%, 100% { transform: scale(1) rotate(0deg); }
-          3% { transform: scale(1.3) rotate(-5deg); }
+          0% { transform: scale(1.3) rotate(-5deg); }
+          3% { transform: scale(1) rotate(0deg); }
+          7%, 100% { transform: scale(1) rotate(0deg); }
         }
         .vehicle-bob { animation: vehicle-react 20s linear infinite; }
         .milestone-badge { animation: card-react 20s linear infinite; }
@@ -108,7 +136,7 @@ export const FromSimpleIdeaSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative w-full -mt-23 h-10 sm:h-20 bg-neutral-800 border-y border-neutral-700 flex items-center justify-center overflow-hidden">
+      <div className="relative w-full -mt-6 sm:-mt-12 lg:-mt-23 h-10 sm:h-20 bg-neutral-800 border-y border-neutral-700 flex items-center justify-center overflow-hidden">
         <div className="w-full border-t-2 border-dashed border-[#E6DA34]" />
         <div className="absolute inset-y-0 left-0 right-0 mx-auto max-w-7xl px-4 pointer-events-none">
           <span
@@ -136,30 +164,52 @@ export const FromSimpleIdeaSection: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
-            {milestones.map((m, idx) => (
-              <motion.div
-                key={idx}
-                variants={fadeUp}
-                className={`flex flex-col items-center text-center ${idx % 2 ? "lg:rotate-1" : "lg:-rotate-1"}`}
-              >
-                <span className="w-0.5 h-10 sm:h-12 border-l-2 border-dashed border-[#E6DA34]/70" />
-                <span
-                  className="milestone-badge bg-white text-neutral-950 font-black text-2xl px-8 py-2 rounded-full border-[3px] border-neutral-950 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]"
-                  style={{ animationDelay: `${idx * 4 + 2}s` }}
+          <div>
+            <div className="sm:hidden">
+              <div className="relative min-h-[280px] flex items-center justify-center">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, y: 24, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="w-full max-w-sm mx-auto flex flex-col items-center text-center"
                 >
-                  {m.year}
-                </span>
-                <span className="bg-[#E6DA34] text-neutral-950 font-bold text-sm px-4 py-1.5 rounded-full border-[3px] border-neutral-950 mt-4 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
-                  {m.title}
-                </span>
-                <div className="mt-5 bg-[#E6DA34] text-neutral-900 rounded-2xl p-5 w-full border-[3px] border-neutral-950 shadow-[6px_6px_0_0_rgba(0,0,0,0.45)] hover:-translate-y-1 transition-transform duration-300">
-                  <p className="text-xs leading-relaxed font-medium">
-                    {m.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                  <span className="w-0.5 h-10 border-l-2 border-dashed border-[#E6DA34]/70" />
+                  <span className="bg-white text-neutral-950 font-black text-3xl px-8 py-2 rounded-full border-[3px] border-neutral-950 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
+                    {milestones[active].year}
+                  </span>
+                  <span className="bg-[#E6DA34] text-neutral-950 font-bold text-sm px-4 py-1.5 rounded-full border-[3px] border-neutral-950 mt-4 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
+                    {milestones[active].title}
+                  </span>
+                  <div className="mt-5 bg-[#E6DA34] text-neutral-900 rounded-2xl p-5 w-full border-[3px] border-neutral-950 shadow-[6px_6px_0_0_rgba(0,0,0,0.45)]">
+                    <p className="text-xs leading-relaxed font-medium">
+                      {milestones[active].desc}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+              <div className="flex justify-center gap-2">
+                {milestones.map((m, i) => (
+                  <span
+                    key={i}
+                    className={`w-2.5 h-2.5 rounded-full border border-neutral-600 ${
+                      i === active ? "bg-[#E6DA34]" : "bg-transparent"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+              {milestones.map((m, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={fadeUp}
+                  className={`flex flex-col items-center text-center ${idx % 2 ? "lg:rotate-1" : "lg:-rotate-1"}`}
+                >
+                  {milestoneCard(m, idx)}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

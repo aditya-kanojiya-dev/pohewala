@@ -155,7 +155,7 @@ export const FindPohewalaSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="font-serif font-bold text-[26px] sm:text-[30px] md:text-[38px] lg:text-[48px] xl:text-[56px] leading-[1.15] lg:leading-[1.1] text-[#232323] pt-[60px] sm:pt-[70px] md:pt-[100px] lg:pt-[160px] xl:pt-[200px]"
+          className="font-serif font-bold text-[26px] sm:text-[30px] md:text-[38px] lg:text-[48px] xl:text-[56px] leading-[1.15] lg:leading-[1.1] text-[#232323] pt-[80px] sm:pt-[90px] md:pt-[120px] lg:pt-[180px] xl:pt-[220px]"
         >
           Find Pohewala, Wherever You Are
         </motion.h2>

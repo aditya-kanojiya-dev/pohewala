@@ -21,6 +21,7 @@
 /build
 
 # misc
+.playwright-cli
 .DS_Store
 *.pem
 

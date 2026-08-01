@@ -15,8 +15,8 @@ const blogPost = {
   title:
     "Nothing Beats The Magic Of\nWatching The Monsoon Rain\nA Plate Of Piping Hot,\nCrispy Bhajiya.",
   author: "John Wilson",
-  avatar: "/images/blog-avatar1.png",
-  image: "/images/blog-poster.png",
+  avatar: "/images/Blogs/blog-avatar1.png",
+  image: "/images/Blogs/blog-poster.png",
   date: "10 July 2026",
   views: 100,
   comments: 50,

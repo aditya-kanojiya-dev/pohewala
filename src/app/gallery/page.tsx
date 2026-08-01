@@ -85,7 +85,7 @@ const galleryItems: GalleryItem[] = [
     title: "Kulhad Chai Moments",
     tag: "Culture",
     type: "person",
-    image: "/images/blog-poster.png",
+    image: "/images/Blogs/blog-poster.png",
     aspect: "aspect-[4/3]",
   },
   {

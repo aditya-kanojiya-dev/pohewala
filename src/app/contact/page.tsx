@@ -390,34 +390,43 @@ export default function ContactPage() {
                 channel: "YouTube",
               },
             ].map((v, i) => (
-              <Reveal key={v.id} delay={i * 0.1}>
+              <Reveal key={v.id} delay={i * 0.1} className="h-full">
                 <a
                   href={`https://www.youtube.com/watch?v=${v.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition border border-yellow-200"
+                  className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden border-[3px] border-neutral-950 shadow-[6px_6px_0_0_rgba(0,0,0,0.45)] hover:-translate-y-1.5 hover:shadow-[8px_8px_0_0_rgba(0,0,0,0.45)] transition"
                 >
-                  <div className="relative aspect-video bg-neutral-800">
+                  <div className="relative aspect-video bg-neutral-900 overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+                      src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`}
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (img.src.includes("maxresdefault")) {
+                          img.src = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
+                        }
+                      }}
                       alt={v.title}
                       loading="lazy"
                       className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-300"
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-[#E6DA34] flex items-center justify-center shadow-lg group-hover:scale-110 transition">
-                        <Play className="w-5 h-5 text-neutral-950 ml-0.5" />
+                      <div className="w-14 h-14 rounded-full bg-[#E6DA34] border-[3px] border-neutral-950 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition">
+                        <Play className="w-6 h-6 text-neutral-950 fill-current ml-0.5" />
                       </div>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-neutral-900 line-clamp-2 leading-snug">
+                  <div className="p-5 flex flex-col gap-2.5">
+                    <h3 className="text-sm font-black text-neutral-950 leading-snug line-clamp-2">
                       {v.title}
                     </h3>
-                    <p className="text-xs text-neutral-500 mt-1 font-medium">
-                      Pohewala on YouTube
+                    <p className="flex items-center gap-2 text-xs font-bold text-neutral-500 mt-auto">
+                      <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-wide px-2 py-0.5 rounded">
+                        YouTube
+                      </span>
+                      Pohewala
                     </p>
                   </div>
                 </a>

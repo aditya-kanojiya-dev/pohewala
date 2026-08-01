@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 export const AboutSection: React.FC = () => {
   return (
     <section
-      className="w-full min-h-[620px] flex items-center pt-36 lg:pt-46 pb-24 lg:pb-20 bg-pohe-gradient"
+      className="w-full min-h-[620px] flex items-center pt-36 lg:pt-46 pb-32 lg:pb-28 bg-pohe-gradient"
     >
       <div className="max-w-[1440px] mx-auto w-full">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 px-6 sm:px-10 lg:pl-[90px]">

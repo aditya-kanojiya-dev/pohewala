@@ -267,55 +267,95 @@ export const HeroSection: React.FC = () => {
           })}
         </div>
 
-        {/* Right Composition - Mobile */}
-        <div className="block lg:hidden w-full pb-6 sm:pb-8 px-4">
-          <div className="relative mx-auto" style={{ width: "min(340px, 100%)", height: "380px" }}>
-            <div className="absolute left-1/2 -translate-x-1/2" style={{ width: "260px", height: "260px", top: "10px" }}>
-              <div
-                className="absolute rounded-full border border-dashed w-full h-full inset-0"
-                style={{ borderColor: "rgba(255,255,255,.75)" }}
-              />
-              <div
-                className="absolute"
-                style={{ width: "96%", height: "96%", left: "2%", top: "2%" }}
+        {/* Right Composition - Mobile (mirrors desktop, stacked below) */}
+        <div className="block lg:hidden relative w-full px-4 pb-8 overflow-visible">
+          <div className="relative mx-auto" style={{ width: "380px", maxWidth: "100%", height: "400px" }}>
+            {/* Rotating dashed circle */}
+            <div
+              className="absolute"
+              style={{ width: "350px", height: "350px", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="w-full h-full"
               >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeMini}
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.2 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                    className="w-full h-full"
-                  >
-                    <Image
-                      src="/images/poha-bowl.png"
-                      alt={VARIANTS[activeMini].label}
-                      width={496}
-                      height={479}
-                      className="object-contain w-full h-full"
-                      loading="eager"
-                      fetchPriority="high"
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                <svg width="350" height="350" viewBox="0 0 350 350">
+                  <circle
+                    cx="175"
+                    cy="175"
+                    r="174"
+                    fill="none"
+                    stroke="rgba(255,255,255,.75)"
+                    strokeWidth="2"
+                    strokeDasharray="15 14"
+                  />
+                </svg>
+              </motion.div>
             </div>
 
+            {/* Colored backing circle */}
+            <div
+              className="absolute rounded-full"
+              style={{
+                width: "287px",
+                height: "287px",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "#FCEE57",
+              }}
+            />
+
+            {/* Main bowl */}
+            <div
+              className="absolute"
+              style={{
+                width: "320px",
+                height: "310px",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeMini}
+                  initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 1.2, rotate: 10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="w-full h-full relative"
+                >
+                  <Image
+                    src="/images/poha-bowl.png"
+                    alt={VARIANTS[activeMini].label}
+                    width={496}
+                    height={479}
+                    className="object-contain w-full h-full scale-[1.38]"
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Mini Bowls */}
             {ANGLES.map((angle, i) => {
-              const s = SIZES[i] * 0.42;
+              const s = SIZES[i] * 0.44;
               const rad = (angle * Math.PI) / 180;
               return (
                 <MiniBowl
                   key={i}
-                  p={{ x: 170 + 175 * Math.cos(rad), y: 125 + 175 * Math.sin(rad) }}
+                  p={{ x: 190 + 175 * Math.cos(rad), y: 205 + 175 * Math.sin(rad) }}
                   size={s}
                   variant={VARIANTS[i]}
                   isActive={i === activeMini}
                   activeShadow={`0 0 12px ${VARIANTS[i].color}66`}
-                  borderWidth={2}
+                  idleShadow="0 8px 22px rgba(0,0,0,.28)"
+                  borderWidth={3}
                   delay={0.3 + i * 0.06}
-                  imgScale=""
+                  showLabel
                   onClick={() => setActiveMini(i)}
                 />
               );

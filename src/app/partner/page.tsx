@@ -266,7 +266,7 @@ export default function PartnerPage() {
             <ImagePlaceholder
               label="Sports cafe gaming and pool lounge"
               aspectRatio="aspect-[4/3]"
-              imageSrc="/images/blog.jpg"
+              imageSrc="/images/Blogs/blog.jpg"
               className="w-full"
             />
           </div>

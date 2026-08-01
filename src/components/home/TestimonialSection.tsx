@@ -17,7 +17,7 @@ const testimonials = [
     id: 1,
     name: "Jenny Wilson",
     designation: "Food Blogger",
-    image: "/images/blog-avatar1.png",
+    image: "/images/Blogs/blog-avatar1.png",
     message:
       "\"Perfectly fluffy, steaming hot, and topped with the perfect crunch of sev and onions. It's the ultimate comfort food breakfast that gets the authentic flavors exactly right.\"",
   },
@@ -25,7 +25,7 @@ const testimonials = [
     id: 2,
     name: "Robert Chen",
     designation: "Chef",
-    image: "/images/blog-avatar2.png",
+    image: "/images/Blogs/blog-avatar2.png",
     message:
       "\"Thick, creamy, and served icy cold with a wonderfully bold coffee kick. It's incredibly refreshing and a fantastic treat to beat the afternoon heat.\"",
   },
@@ -33,7 +33,7 @@ const testimonials = [
     id: 3,
     name: "Sarah Patel",
     designation: "Regular Customer",
-    image: "/images/blog-avatar1.png",
+    image: "/images/Blogs/blog-avatar1.png",
     message:
       "\"The tarri poha is absolutely divine. The blend of spices and the aroma takes me straight back to the streets of Pune. Absolutely addictive!\"",
   },
@@ -41,7 +41,7 @@ const testimonials = [
     id: 4,
     name: "Amit Sharma",
     designation: "Food Critic",
-    image: "/images/blog-avatar2.png",
+    image: "/images/Blogs/blog-avatar2.png",
     message:
       "\"I've had poha across the country, but nothing compares to this. The freshness, the texture, the balance of flavors—it's a masterpiece.\"",
   },
@@ -49,7 +49,7 @@ const testimonials = [
     id: 5,
     name: "Priya Kapoor",
     designation: "Nutritionist",
-    image: "/images/blog-avatar1.png",
+    image: "/images/Blogs/blog-avatar1.png",
     message:
       "\"Finally a healthy breakfast option that doesn't compromise on taste. Light, nutritious, and bursting with authentic Maharashtrian flavors.\"",
   },
@@ -57,7 +57,7 @@ const testimonials = [
     id: 6,
     name: "David Kim",
     designation: "Travel Blogger",
-    image: "/images/blog-avatar2.png",
+    image: "/images/Blogs/blog-avatar2.png",
     message:
       "\"Cold coffee here is a game changer. Rich, velvety, and perfectly sweet—just what you need to recharge after exploring the city all day.\"",
   },
@@ -65,7 +65,7 @@ const testimonials = [
     id: 7,
     name: "Meera Joshi",
     designation: "Local Foodie",
-    image: "/images/blog-avatar1.png",
+    image: "/images/Blogs/blog-avatar1.png",
     message:
       "\"Been coming here every weekend for months. The consistency is incredible—every single plate tastes as good as the first one I ever had.\"",
   },
@@ -73,7 +73,7 @@ const testimonials = [
     id: 8,
     name: "Rahul Verma",
     designation: "Office Worker",
-    image: "/images/blog-avatar2.png",
+    image: "/images/Blogs/blog-avatar2.png",
     message:
       "\"Quick, affordable, and delicious. My go-to breakfast before work. The sev puri topping is the cherry on top—crunches in every bite!\"",
   },
