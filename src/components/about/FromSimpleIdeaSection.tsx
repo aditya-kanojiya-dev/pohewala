@@ -122,7 +122,7 @@ export const FromSimpleIdeaSection: React.FC = () => {
                 alt=""
                 width={56}
                 height={56}
-                className="object-contain -scale-x-100"
+                className="object-contain"
               />
             </span>
           </span>
