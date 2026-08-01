@@ -303,6 +303,7 @@ export default function ContactPage() {
                   src="/images/contact.png"
                   alt="Pohewala support team member"
                   fill
+                  priority
                   sizes="(min-width: 1024px) 42vw, 100vw"
                   className="object-cover object-top"
                 />
@@ -316,7 +317,8 @@ export default function ContactPage() {
                   src="/images/contact.png"
                   alt="Pohewala support team member"
                   fill
-                  sizes="100vw"
+                  priority
+                  sizes="(min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
                   className="object-cover object-top"
                 />
               </div>
