@@ -7,12 +7,17 @@ import { Pool } from "pg";
 const globalForDb = globalThis as unknown as { __pohewalaPool?: Pool };
 
 function createPool(): Pool {
-  if (!process.env.DATABASE_URL) {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
     throw new Error("DATABASE_URL is not set. Add it to your environment (see .env.example).");
   }
+  const isLocal = /localhost|127\.0\.0\.1/.test(connectionString);
   return new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString,
     max: 1,
+    // Managed hosts (Neon, Supabase) refuse plaintext connections; pg ignores
+    // sslmode in the URL, so force SSL here. Local Postgres usually has none.
+    ssl: isLocal ? false : { rejectUnauthorized: false },
   });
 }
 
