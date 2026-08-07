@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 bg-pohe-gradient border-2 border-[#0e0e0e] [background-image:radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(115deg,transparent_42%,rgba(255,255,255,0.07)_50%,transparent_58%)] [background-size:18px_18px,100%_100%]">
+    <header className="sticky top-0 z-50 bg-pohe-gradient border-2 border-[#000000] [background-image:radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(115deg,transparent_42%,rgba(255,255,255,0.07)_50%,transparent_58%)] [background-size:18px_18px,100%_100%]">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-28 flex items-center justify-between">
         
         {/* Brand Logo */}
@@ -31,6 +31,7 @@ export const Navbar: React.FC = () => {
             <Image
               src="/images/logo.png"
               alt="Pohewala Logo"
+              loading="eager"
               width={370}
               height={103}
               priority
@@ -45,10 +46,10 @@ export const Navbar: React.FC = () => {
             <Link
               key={item.name}
               href={item.href}
-              className={`text-sm lg:text-base font-medium transition-colors hover:text-[#E6DA34] ${
+              className={`text-sm lg:text-base font-medium transition-colors hover:text-[#FCEE57] ${
                 isActive(item.href)
-                  ? "text-[#E6DA34] border-b-2 border-[#E6DA34] pb-1 font-semibold"
-                  : "text-neutral-200"
+                  ? "text-[#FCEE57] border-b-2 border-[#FCEE57] pb-1 font-semibold"
+                  : "text-white"
               }`}
             >
               {item.name}
@@ -60,7 +61,7 @@ export const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center">
           <Link
             href="/partner"
-            className="bg-[#E6DA34] hover:bg-[#d9cd2b] text-neutral-900 font-bold px-5 py-2.5 rounded-md shadow-md transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 text-sm tracking-wide"
+            className="bg-[#FCEE57] hover:bg-black hover:text-[#FCEE57] text-black font-bold px-5 py-2.5 rounded-md shadow-md transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 text-sm tracking-wide"
           >
             Become a Partner
           </Link>
@@ -70,7 +71,7 @@ export const Navbar: React.FC = () => {
         <div className="md:hidden flex items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-md text-neutral-200 hover:text-white hover:bg-neutral-700/50"
+            className="p-2 rounded-md text-white hover:text-white hover:bg-[#666666]/50"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -80,7 +81,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#3F3F3F] border-b border-neutral-700 px-4 pt-3 pb-6 space-y-3">
+        <div className="md:hidden bg-[#000000] border-b border-[#666666] px-4 pt-3 pb-6 space-y-3">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -88,8 +89,8 @@ export const Navbar: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className={`block px-3 py-2 rounded-md text-base font-medium ${
                 isActive(item.href)
-                  ? "bg-[#E6DA34] text-neutral-900 font-bold"
-                  : "text-neutral-200 hover:bg-neutral-700 hover:text-white"
+                  ? "bg-[#FCEE57] text-black font-bold"
+                  : "text-white hover:bg-[#666666] hover:text-white"
               }`}
             >
               {item.name}
@@ -99,7 +100,7 @@ export const Navbar: React.FC = () => {
             <Link
               href="/partner"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full bg-[#E6DA34] hover:bg-[#d9cd2b] text-neutral-900 font-bold px-4 py-2.5 rounded-md shadow text-center"
+              className="block w-full bg-[#FCEE57] hover:bg-black hover:text-[#FCEE57] text-black font-bold px-4 py-2.5 rounded-md shadow text-center"
             >
               Become a Partner
             </Link>

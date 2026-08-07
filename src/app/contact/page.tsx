@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { CTASection } from "@/components/cta/CTASection";
 import { Reveal } from "@/components/shared/Reveal";
@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 const inputClass =
-  "w-full bg-white/90 border border-[#CFC9E8] rounded-[16px] px-5 py-3.5 text-base text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#8B7FD0] focus:ring-4 focus:ring-[#CFC9E8]/40 transition";
+  "w-full bg-white/90 border border-[#BCBCBC] rounded-[16px] px-5 py-3.5 text-base text-black placeholder-[#BCBCBC] focus:outline-none focus:border-[#FCEE57] focus:ring-4 focus:ring-[#BCBCBC]/40 transition";
 
 const STORES = [
   { id: 1, name: "Pohewala Head Office", city: "Nagpur", lat: 21.1458, lng: 79.0882 },
@@ -63,6 +63,9 @@ const formatDistance = (km: number) =>
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const [formState, setFormState] = useState({
     fullName: "",
     email: "",
@@ -71,13 +74,39 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormState({ fullName: "", email: "", phone: "", subject: "", message: "" });
-    }, 3000);
+    if (sending) return;
+    setSending(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "contact",
+          name: formState.fullName,
+          email: formState.email,
+          phone: formState.phone,
+          subject: formState.subject,
+          message: formState.message,
+          honeypot: honeypotRef.current?.value ?? "",
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormState({ fullName: "", email: "", phone: "", subject: "", message: "" });
+      }, 3000);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const [query, setQuery] = useState("");
@@ -146,12 +175,12 @@ export default function ContactPage() {
       {/* 1. HERO HEADER */}
       <section className="text-center space-y-4 max-w-4xl mx-auto px-4">
         <Reveal>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#E6DA34] tracking-tight font-serif">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#FCEE57] tracking-tight font-serif">
             Contact Us
           </h1>
         </Reveal>
         <Reveal delay={0.15}>
-          <p className="text-neutral-200 text-sm sm:text-base leading-relaxed font-medium">
+          <p className="text-white text-sm sm:text-base leading-relaxed font-medium">
             In a city like Nagpur, where mornings start with the aroma of tarri poha, two young minds decided to turn this everyday dish into something extraordinary.
           </p>
         </Reveal>
@@ -159,17 +188,17 @@ export default function ContactPage() {
 
       {/* 2. MAIN CONTACT CARD & FORM */}
       <Reveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[20px] border-[3px] border-[#5B6ACF] bg-[#F2D93B] text-neutral-900 shadow-2xl">
+        <div className="relative overflow-hidden rounded-[20px] border-[3px] border-[#000000] bg-[#FCEE57] text-black shadow-2xl">
           {/* Decorative two-tone background layers */}
           <div aria-hidden className="pointer-events-none absolute inset-0">
             {/* Lavender top-left blob */}
-            <div className="absolute top-0 left-0 w-[62%] h-[46%] bg-[#EDEDF7] rounded-br-[140px]" />
+            <div className="absolute top-0 left-0 w-[62%] h-[46%] bg-[#FFFFFF] rounded-br-[140px]" />
             {/* Spotlight blob behind the photo */}
-            <div className="absolute -left-[8%] bottom-[-14%] w-[48%] h-[72%] rounded-[140px] bg-[#F6E15A]" />
+            <div className="absolute -left-[8%] bottom-[-14%] w-[48%] h-[72%] rounded-[140px] bg-[#FCEE57]" />
             {/* Diagonal brush strokes top-right */}
-            <div className="absolute top-8 right-[8%] w-44 h-7 rounded-full bg-[#EFD542] opacity-70 rotate-[28deg]" />
-            <div className="absolute top-16 right-[28%] w-56 h-5 rounded-full bg-[#E8CC45] opacity-50 -rotate-[24deg]" />
-            <div className="absolute top-28 right-[3%] w-28 h-4 rounded-full bg-[#E7C93E] opacity-60 rotate-[34deg]" />
+            <div className="absolute top-8 right-[8%] w-44 h-7 rounded-full bg-[#FCEE57] opacity-70 rotate-[28deg]" />
+            <div className="absolute top-16 right-[28%] w-56 h-5 rounded-full bg-[#FCEE57] opacity-50 -rotate-[24deg]" />
+            <div className="absolute top-28 right-[3%] w-28 h-4 rounded-full bg-[#FCEE57] opacity-60 rotate-[34deg]" />
           </div>
 
           <div className="relative grid grid-cols-1 lg:grid-cols-12">
@@ -178,7 +207,7 @@ export default function ContactPage() {
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight leading-tight">
                 Lets Get in <span className="font-black">Touch!</span>
               </h2>
-              <p className="mt-4 text-sm text-neutral-600 font-medium leading-relaxed max-w-[280px]">
+              <p className="mt-4 text-sm text-[#666666] font-medium leading-relaxed max-w-[280px]">
                 Whether you have questions, need support, or just want to get in touch, don&apos;t hesitate to reach out. Our team is ready to assist you with any inquiries or concerns you may have.
               </p>
             </div>
@@ -188,17 +217,26 @@ export default function ContactPage() {
               {submitted ? (
                 <div className="py-12 flex flex-col items-center text-center space-y-3">
                   <CheckCircle2 className="w-16 h-16 text-green-600 animate-bounce" />
-                  <h3 className="text-2xl font-bold text-neutral-900">Message Sent!</h3>
-                  <p className="text-sm text-neutral-600">
+                  <h3 className="text-2xl font-bold text-black">Message Sent!</h3>
+                  <p className="text-sm text-[#666666]">
                     Thank you for reaching out to Pohewala. We will contact you shortly!
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  <input
+                    ref={honeypotRef}
+                    type="text"
+                    name="honeypot"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
                   <div>
                     <label
                       htmlFor="fullName"
-                      className="block text-sm font-medium text-neutral-800 mb-1.5"
+                      className="block text-sm font-medium text-[#666666] mb-1.5"
                     >
                       Full Name
                     </label>
@@ -216,7 +254,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-neutral-800 mb-1.5"
+                      className="block text-sm font-medium text-[#666666] mb-1.5"
                     >
                       Email
                     </label>
@@ -234,7 +272,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-neutral-800 mb-1.5"
+                      className="block text-sm font-medium text-[#666666] mb-1.5"
                     >
                       Phone
                     </label>
@@ -252,7 +290,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="subject"
-                      className="block text-sm font-medium text-neutral-800 mb-1.5"
+                      className="block text-sm font-medium text-[#666666] mb-1.5"
                     >
                       Subject
                     </label>
@@ -269,7 +307,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium text-neutral-800 mb-1.5"
+                      className="block text-sm font-medium text-[#666666] mb-1.5"
                     >
                       Message
                     </label>
@@ -284,12 +322,19 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {submitError && (
+                    <p className="text-sm text-red-600 font-medium bg-red-50 border border-red-200 rounded-lg px-4 py-2.5">
+                      {submitError}
+                    </p>
+                  )}
+
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      className="bg-neutral-950 hover:bg-neutral-800 active:scale-[0.98] cursor-pointer text-white font-bold px-8 py-3 rounded-full flex items-center justify-center gap-2 transition text-sm"
+                      disabled={sending}
+                      className="bg-black hover:bg-black active:scale-[0.98] disabled:opacity-60 cursor-pointer text-white font-bold px-8 py-3 rounded-full flex items-center justify-center gap-2 transition text-sm"
                     >
-                      <Send className="w-4 h-4 text-[#F2D93B]" /> Submit
+                      <Send className="w-4 h-4 text-[#FCEE57]" /> Submit
                     </button>
                   </div>
                 </form>
@@ -329,32 +374,32 @@ export default function ContactPage() {
               <div className="space-y-3">
                 <h3 className="text-xl font-bold">Head Office:</h3>
                 <p className="flex items-start gap-2.5 text-sm font-medium leading-relaxed">
-                  <MapPin className="w-4 h-4 text-[#5B6ACF] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#000000] shrink-0 mt-0.5" />
                   <span>
                     4th Floor, Guruprasad Apartment, Taj Nagar, near Tukdogi Putla Square, Nagpur-440027, Maharashtra.
                   </span>
                 </p>
                 <p className="flex items-center gap-2.5 text-sm font-medium">
-                  <Phone className="w-4 h-4 text-[#5B6ACF] shrink-0" /> +91-9923000480
+                  <Phone className="w-4 h-4 text-[#000000] shrink-0" /> +91-9923000480
                 </p>
                 <p className="flex items-center gap-2.5 text-sm font-medium">
-                  <Mail className="w-4 h-4 text-[#5B6ACF] shrink-0" /> Pohewalacare@gmail.com
+                  <Mail className="w-4 h-4 text-[#000000] shrink-0" /> Pohewalacare@gmail.com
                 </p>
               </div>
 
               <div className="space-y-3">
                 <h3 className="text-xl font-bold">Regional office:</h3>
                 <p className="flex items-start gap-2.5 text-sm font-medium leading-relaxed">
-                  <MapPin className="w-4 h-4 text-[#5B6ACF] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#000000] shrink-0 mt-0.5" />
                   <span>
                     House no. 317, 7th Main Rd, Sector 6, HSR Layout, Bengaluru, Karnataka 560102
                   </span>
                 </p>
                 <p className="flex items-center gap-2.5 text-sm font-medium">
-                  <Phone className="w-4 h-4 text-[#5B6ACF] shrink-0" /> +91-8888843354
+                  <Phone className="w-4 h-4 text-[#000000] shrink-0" /> +91-8888843354
                 </p>
                 <p className="flex items-center gap-2.5 text-sm font-medium">
-                  <Phone className="w-4 h-4 text-[#5B6ACF] shrink-0" /> +91-9552714131
+                  <Phone className="w-4 h-4 text-[#000000] shrink-0" /> +91-9552714131
                 </p>
               </div>
             </div>
@@ -363,13 +408,13 @@ export default function ContactPage() {
       </Reveal>
 
       {/* 3. MEDIA BUZZ */}
-      <section className="bg-pohe-gradient py-16 text-white border-y border-neutral-600">
+      <section className="bg-pohe-gradient py-16 text-white border-y border-[#666666]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <Reveal className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-3xl sm:text-4xl font-black text-[#E6DA34] font-serif">
+            <h2 className="text-3xl sm:text-4xl font-black text-[#FCEE57] font-serif">
               Media Buzz
             </h2>
-            <p className="text-sm text-neutral-300">
+            <p className="text-sm text-white">
               In a city like Nagpur, where mornings start with the aroma of tarri poha...
             </p>
           </Reveal>
@@ -397,9 +442,9 @@ export default function ContactPage() {
                   href={`https://www.youtube.com/watch?v=${v.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden border-[3px] border-neutral-950 shadow-[6px_6px_0_0_rgba(0,0,0,0.45)] hover:-translate-y-1.5 hover:shadow-[8px_8px_0_0_rgba(0,0,0,0.45)] transition"
+                  className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden border-[3px] border-black shadow-[6px_6px_0_0_rgba(0,0,0,0.45)] hover:-translate-y-1.5 hover:shadow-[8px_8px_0_0_rgba(0,0,0,0.45)] transition"
                 >
-                  <div className="relative aspect-video bg-neutral-900 overflow-hidden">
+                  <div className="relative aspect-video bg-black overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`}
@@ -415,16 +460,16 @@ export default function ContactPage() {
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-14 h-14 rounded-full bg-[#E6DA34] border-[3px] border-neutral-950 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition">
-                        <Play className="w-6 h-6 text-neutral-950 fill-current ml-0.5" />
+                      <div className="w-14 h-14 rounded-full bg-[#FCEE57] border-[3px] border-black flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition">
+                        <Play className="w-6 h-6 text-black fill-current ml-0.5" />
                       </div>
                     </div>
                   </div>
                   <div className="p-5 flex flex-col gap-2.5">
-                    <h3 className="text-sm font-black text-neutral-950 leading-snug line-clamp-2">
+                    <h3 className="text-sm font-black text-black leading-snug line-clamp-2">
                       {v.title}
                     </h3>
-                    <p className="flex items-center gap-2 text-xs font-bold text-neutral-500 mt-auto">
+                    <p className="flex items-center gap-2 text-xs font-bold text-[#BCBCBC] mt-auto">
                       <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-wide px-2 py-0.5 rounded">
                         YouTube
                       </span>
@@ -443,43 +488,43 @@ export default function ContactPage() {
       <Reveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="text-center space-y-2">
           <h2 className="text-3xl sm:text-4xl font-black text-white font-serif">
-            Find Us On <span className="text-[#E6DA34]">Google Maps</span>
+            Find Us On <span className="text-[#FCEE57]">Google Maps</span>
           </h2>
-          <p className="text-neutral-300 text-sm font-medium">
+          <p className="text-white text-sm font-medium">
             Search your area or share your live location to find the nearest Pohewala store.
           </p>
         </div>
 
         {/* Locate Panel */}
-        <div className="bg-white rounded-3xl shadow-2xl border border-yellow-200 p-4 sm:p-6 space-y-4">
+        <div className="bg-white rounded-3xl shadow-2xl border border-[#FCEE57] p-4 sm:p-6 space-y-4">
           <div className="flex flex-col lg:flex-row gap-3">
-            <div className="flex items-center gap-2 bg-neutral-50 border border-neutral-200 rounded-xl px-4 flex-1 focus-within:border-yellow-500 focus-within:ring-2 focus-within:ring-yellow-300 transition">
-              <Search className="w-4 h-4 text-neutral-400 shrink-0" />
+            <div className="flex items-center gap-2 bg-white border border-[#BCBCBC] rounded-xl px-4 flex-1 focus-within:border-[#FCEE57] focus-within:ring-2 focus-within:ring-[#FCEE57] transition">
+              <Search className="w-4 h-4 text-[#BCBCBC] shrink-0" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleLocate()}
                 placeholder="Enter your area, city or PIN code"
-                className="bg-transparent py-3 text-base text-neutral-900 placeholder-neutral-400 outline-none w-full"
+                className="bg-transparent py-3 text-base text-black placeholder-[#BCBCBC] outline-none w-full"
               />
             </div>
             <button
               onClick={handleLocate}
               disabled={searching !== null}
-              className="bg-neutral-950 hover:bg-neutral-800 active:scale-[0.98] disabled:opacity-60 cursor-pointer text-white font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition text-sm"
+              className="bg-black hover:bg-black active:scale-[0.98] disabled:opacity-60 cursor-pointer text-white font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition text-sm"
             >
               {searching === "address" ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                <MapPin className="w-4 h-4 text-[#E6DA34]" />
+                <MapPin className="w-4 h-4 text-[#FCEE57]" />
               )}
               Locate a Store
             </button>
             <button
               onClick={handleMyLocation}
               disabled={searching !== null}
-              className="bg-[#E6DA34] hover:bg-[#f0e64a] active:scale-[0.98] disabled:opacity-60 cursor-pointer text-neutral-950 font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition text-sm border border-yellow-300"
+              className="bg-[#FCEE57] hover:bg-black hover:text-[#FCEE57] active:scale-[0.98] disabled:opacity-60 cursor-pointer text-black font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition text-sm border border-[#FCEE57]"
             >
               {searching === "geo" ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -497,16 +542,16 @@ export default function ContactPage() {
           )}
 
           {nearest && (
-            <div className="flex flex-wrap items-center gap-3 bg-[#E6DA34]/10 border border-yellow-300 rounded-xl px-4 py-3">
-              <div className="w-10 h-10 rounded-full bg-[#E6DA34] flex items-center justify-center shrink-0">
-                <MapPin className="w-5 h-5 text-neutral-950" />
+            <div className="flex flex-wrap items-center gap-3 bg-[#FCEE57]/10 border border-[#FCEE57] rounded-xl px-4 py-3">
+              <div className="w-10 h-10 rounded-full bg-[#FCEE57] flex items-center justify-center shrink-0">
+                <MapPin className="w-5 h-5 text-black" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-neutral-900">
+                <p className="text-sm font-bold text-black">
                   {nearest.store.name}{" "}
-                  <span className="text-neutral-500 font-medium">({nearest.store.city})</span>
+                  <span className="text-[#BCBCBC] font-medium">({nearest.store.city})</span>
                 </p>
-                <p className="text-xs text-neutral-600 font-medium">
+                <p className="text-xs text-[#666666] font-medium">
                   Nearest store from {nearest.origin} — {formatDistance(nearest.distanceKm)} away
                 </p>
               </div>
@@ -514,15 +559,15 @@ export default function ContactPage() {
                 href={`https://www.google.com/maps/dir/?api=1&destination=${nearest.store.lat},${nearest.store.lng}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition cursor-pointer"
+                className="inline-flex items-center gap-2 bg-black hover:bg-black text-white text-xs font-bold px-3.5 py-2 rounded-lg transition cursor-pointer"
               >
-                <Navigation className="w-3.5 h-3.5 text-[#E6DA34]" /> Directions
+                <Navigation className="w-3.5 h-3.5 text-[#FCEE57]" /> Directions
               </a>
             </div>
           )}
 
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-bold text-neutral-500 uppercase tracking-wide mr-1">
+            <span className="text-xs font-bold text-[#BCBCBC] uppercase tracking-wide mr-1">
               Jump to:
             </span>
             {STORES.map((s) => (
@@ -534,8 +579,8 @@ export default function ContactPage() {
                 }}
                 className={`text-xs font-bold px-3 py-1.5 rounded-full border cursor-pointer transition ${
                   mapQuery === `${s.lat},${s.lng}`
-                    ? "bg-[#E6DA34] border-yellow-300 text-neutral-950"
-                    : "bg-neutral-50 border-neutral-200 text-neutral-700 hover:bg-neutral-100"
+                    ? "bg-[#FCEE57] border-[#FCEE57] text-black"
+                    : "bg-white border-[#BCBCBC] text-[#666666] hover:bg-[#BCBCBC]"
                 }`}
               >
                 {s.city}
@@ -544,7 +589,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-yellow-400 bg-neutral-900">
+        <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#FCEE57] bg-black">
           <iframe
             title="Pohewala Store Location on Google Maps"
             src={`https://www.google.com/maps?q=${mapQuery}&z=13&output=embed`}
@@ -555,11 +600,11 @@ export default function ContactPage() {
           />
 
           {/* Overlay Location Badge Card */}
-          <div className="absolute top-4 left-4 bg-white/95 backdrop-blur text-neutral-900 p-4 rounded-2xl shadow-xl max-w-xs border border-neutral-200 hidden sm:block">
-            <div className="flex items-center gap-2 font-bold text-sm text-[#E6DA34] bg-neutral-950 px-2.5 py-1 rounded-md mb-2">
+          <div className="absolute top-4 left-4 bg-white/95 backdrop-blur text-black p-4 rounded-2xl shadow-xl max-w-xs border border-[#BCBCBC] hidden sm:block">
+            <div className="flex items-center gap-2 font-bold text-sm text-[#FCEE57] bg-black px-2.5 py-1 rounded-md mb-2">
               <MapPin className="w-4 h-4" /> {nearest ? nearest.store.name : "Pohewala Head Office"}
             </div>
-            <p className="text-xs text-neutral-700 font-medium">
+            <p className="text-xs text-[#666666] font-medium">
               {nearest
                 ? `${nearest.store.city} store — ${formatDistance(nearest.distanceKm)} from ${nearest.origin}`
                 : "4th Floor, Guruprasad Apartment, Taj Nagar, Nagpur-440027"}
@@ -572,9 +617,9 @@ export default function ContactPage() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition cursor-pointer"
+              className="mt-3 inline-flex items-center gap-2 bg-black hover:bg-black text-white text-xs font-bold px-3.5 py-2 rounded-lg transition cursor-pointer"
             >
-              <Navigation className="w-3.5 h-3.5 text-[#E6DA34]" /> Get Directions
+              <Navigation className="w-3.5 h-3.5 text-[#FCEE57]" /> Get Directions
             </a>
           </div>
         </div>

@@ -141,10 +141,10 @@ export default function GalleryPage() {
     <div className="space-y-16 py-8">
       {/* Hero */}
       <Reveal className="text-center space-y-4 max-w-4xl mx-auto px-4">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#E6DA34] tracking-tight font-serif">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#FCEE57] tracking-tight font-serif">
           Pohewala Gallery
         </h1>
-        <p className="text-neutral-200 text-sm sm:text-base leading-relaxed font-medium">
+        <p className="text-white text-sm sm:text-base leading-relaxed font-medium">
           A glimpse into our food, outlets, culture, and growing movement across India.
         </p>
       </Reveal>
@@ -165,14 +165,14 @@ export default function GalleryPage() {
                 aria-pressed={isActive}
                 className={`cursor-pointer px-5 py-2 rounded-full text-sm font-bold border transition-all duration-200 ${
                   isActive
-                    ? "bg-[#E6DA34] border-[#E6DA34] text-neutral-950 shadow-lg scale-105"
-                    : "bg-white/5 border-neutral-600 text-neutral-300 hover:bg-white/10 hover:border-[#E6DA34]/60"
+                    ? "bg-[#FCEE57] border-[#FCEE57] text-black shadow-lg scale-105"
+                    : "bg-white/5 border-[#666666] text-white hover:bg-white/10 hover:border-[#FCEE57]/60"
                 }`}
               >
                 {f.label}
                 <span
                   className={`ml-1.5 text-xs font-semibold ${
-                    isActive ? "text-neutral-800" : "text-neutral-500"
+                    isActive ? "text-[#666666]" : "text-[#BCBCBC]"
                   }`}
                 >
                   {count}
@@ -197,9 +197,9 @@ export default function GalleryPage() {
                 transition={{ duration: 0.25 }}
                 onClick={() => setSelected(item)}
                 aria-label={`Open ${item.title}`}
-                className="group relative block w-full mb-5 break-inside-avoid rounded-2xl overflow-hidden cursor-pointer text-left focus:outline-none focus-visible:ring-4 focus-visible:ring-[#E6DA34]/60"
+                className="group relative block w-full mb-5 break-inside-avoid rounded-2xl overflow-hidden cursor-pointer text-left focus:outline-none focus-visible:ring-4 focus-visible:ring-[#FCEE57]/60"
               >
-                <div className={`${item.aspect} relative overflow-hidden bg-neutral-900`}>
+                <div className={`${item.aspect} relative overflow-hidden bg-black`}>
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -214,12 +214,12 @@ export default function GalleryPage() {
                   {/* Zoom hint */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-xl scale-75 group-hover:scale-100 transition-transform duration-300">
-                      <ZoomIn className="w-5 h-5 text-neutral-950" />
+                      <ZoomIn className="w-5 h-5 text-black" />
                     </div>
                   </div>
 
                   {/* Tag badge */}
-                  <span className="absolute top-3 left-3 bg-[#E6DA34] text-neutral-950 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                  <span className="absolute top-3 left-3 bg-[#FCEE57] text-black text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
                     {item.tag}
                   </span>
 
@@ -265,18 +265,18 @@ export default function GalleryPage() {
               onClick={(e) => e.stopPropagation()}
             >
               <div
-                className={`relative w-full ${selected.aspect} max-h-[75vh] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-neutral-900`}
+                className={`relative w-full ${selected.aspect} max-h-[75vh] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black`}
               >
                 <Image
                   src={selected.image}
                   alt={selected.title}
                   fill
                   sizes="100vw"
-                  className="object-contain bg-neutral-900"
+                  className="object-contain bg-black"
                 />
               </div>
               <figcaption className="mt-4 flex flex-wrap items-center gap-3 justify-center">
-                <span className="bg-[#E6DA34] text-neutral-950 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                <span className="bg-[#FCEE57] text-black text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
                   {selected.tag}
                 </span>
                 <h3 className="text-white font-bold text-lg font-serif">{selected.title}</h3>

@@ -52,17 +52,17 @@ export const FromSimpleIdeaSection: React.FC = () => {
 
   const milestoneCard = (m: (typeof milestones)[number], idx: number) => (
     <>
-      <span className="w-0.5 h-10 sm:h-12 border-l-2 border-dashed border-[#E6DA34]/70" />
+      <span className="w-0.5 h-10 sm:h-12 border-l-2 border-dashed border-[#FCEE57]/70" />
       <span
-        className="milestone-badge bg-white text-neutral-950 font-black text-2xl px-8 py-2 rounded-full border-[3px] border-neutral-950 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]"
+        className="milestone-badge bg-white text-black font-black text-2xl px-8 py-2 rounded-full border-[3px] border-black shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]"
         style={{ animationDelay: `${idx * 4 + 2}s` }}
       >
         {m.year}
       </span>
-      <span className="bg-[#E6DA34] text-neutral-950 font-bold text-sm px-4 py-1.5 rounded-full border-[3px] border-neutral-950 mt-4 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
+      <span className="bg-[#FCEE57] text-black font-bold text-sm px-4 py-1.5 rounded-full border-[3px] border-black mt-4 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
         {m.title}
       </span>
-      <div className="mt-5 bg-[#E6DA34] text-neutral-900 rounded-2xl p-5 w-full border-[3px] border-neutral-950 shadow-[6px_6px_0_0_rgba(0,0,0,0.45)] hover:-translate-y-1 transition-transform duration-300">
+      <div className="mt-5 bg-[#FCEE57] text-black rounded-2xl p-5 w-full border-[3px] border-black shadow-[6px_6px_0_0_rgba(0,0,0,0.45)] hover:-translate-y-1 transition-transform duration-300">
         <p className="text-xs leading-relaxed font-medium">
           {m.desc}
         </p>
@@ -118,7 +118,7 @@ export const FromSimpleIdeaSection: React.FC = () => {
             <h2 className="text-[36px] sm:text-[48px] lg:text-[54px] font-black leading-[1.05] font-serif">
               <span className="text-white block">From A Simple Idea</span>
               <span className="text-white block">to India&apos;s Poha</span>
-              <span className="text-[#E6DA34] block text-[46px] sm:text-[60px] lg:text-[74px] tracking-tight">
+              <span className="text-[#FCEE57] block text-[46px] sm:text-[60px] lg:text-[74px] tracking-tight">
                 MOVEMENT
               </span>
             </h2>
@@ -136,8 +136,8 @@ export const FromSimpleIdeaSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative w-full -mt-6 sm:-mt-12 lg:-mt-23 h-10 sm:h-20 bg-neutral-800 border-y border-neutral-700 flex items-center justify-center overflow-hidden">
-        <div className="w-full border-t-2 border-dashed border-[#E6DA34]" />
+      <div className="relative w-full -mt-6 sm:-mt-12 lg:-mt-23 h-10 sm:h-20 bg-black border-y border-[#666666] flex items-center justify-center overflow-hidden">
+        <div className="w-full border-t-2 border-dashed border-[#FCEE57]" />
         <div className="absolute inset-y-0 left-0 right-0 mx-auto max-w-7xl px-4 pointer-events-none">
           <span
             className="absolute top-1/2 -translate-y-1/2"
@@ -174,14 +174,14 @@ export const FromSimpleIdeaSection: React.FC = () => {
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   className="w-full max-w-sm mx-auto flex flex-col items-center text-center"
                 >
-                  <span className="w-0.5 h-10 border-l-2 border-dashed border-[#E6DA34]/70" />
-                  <span className="bg-white text-neutral-950 font-black text-3xl px-8 py-2 rounded-full border-[3px] border-neutral-950 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
+                  <span className="w-0.5 h-10 border-l-2 border-dashed border-[#FCEE57]/70" />
+                  <span className="bg-white text-black font-black text-3xl px-8 py-2 rounded-full border-[3px] border-black shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
                     {milestones[active].year}
                   </span>
-                  <span className="bg-[#E6DA34] text-neutral-950 font-bold text-sm px-4 py-1.5 rounded-full border-[3px] border-neutral-950 mt-4 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
+                  <span className="bg-[#FCEE57] text-black font-bold text-sm px-4 py-1.5 rounded-full border-[3px] border-black mt-4 shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]">
                     {milestones[active].title}
                   </span>
-                  <div className="mt-5 bg-[#E6DA34] text-neutral-900 rounded-2xl p-5 w-full border-[3px] border-neutral-950 shadow-[6px_6px_0_0_rgba(0,0,0,0.45)]">
+                  <div className="mt-5 bg-[#FCEE57] text-black rounded-2xl p-5 w-full border-[3px] border-black shadow-[6px_6px_0_0_rgba(0,0,0,0.45)]">
                     <p className="text-xs leading-relaxed font-medium">
                       {milestones[active].desc}
                     </p>
@@ -192,8 +192,8 @@ export const FromSimpleIdeaSection: React.FC = () => {
                 {milestones.map((m, i) => (
                   <span
                     key={i}
-                    className={`w-2.5 h-2.5 rounded-full border border-neutral-600 ${
-                      i === active ? "bg-[#E6DA34]" : "bg-transparent"
+                    className={`w-2.5 h-2.5 rounded-full border border-[#666666] ${
+                      i === active ? "bg-[#FCEE57]" : "bg-transparent"
                     }`}
                   />
                 ))}

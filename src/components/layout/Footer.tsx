@@ -7,7 +7,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="text-white pt-12 border-t-2 border-[#0e0e0e] bg-gradient-to-b from-[#232323] to-[#171717] [background-image:radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(115deg,transparent_42%,rgba(255,255,255,0.07)_50%,transparent_58%)] [background-size:18px_18px,100%_100%]">
+    <footer className="text-white pt-12 border-t-2 border-[#000000] bg-gradient-to-b from-[#000000] to-[#000000] [background-image:radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(115deg,transparent_42%,rgba(255,255,255,0.07)_50%,transparent_58%)] [background-size:18px_18px,100%_100%]">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           
@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
               className="w-[200px] h-[55px] object-contain"
             />
 
-            <p className="text-sm text-neutral-300 leading-relaxed">
+            <p className="text-sm text-white leading-relaxed">
               Pohewala delivers the heart of Maharashtra with every bite! Enjoy our freshly made Poha, rich in flavor and tradition. Crafted with love and local ingredients, we bring the taste of home right to your door. Satisfy your cravings anytime with Pohewala – &ldquo;The Poha You Know!&rdquo;
             </p>
 
@@ -70,37 +70,37 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4 border-b-2 border-[#E6DA34] pb-1 inline-block font-serif">
+            <h3 className="text-lg font-bold text-white mb-4 border-b-2 border-[#FCEE57] pb-1 inline-block font-serif">
               Quick Links
             </h3>
-            <ul className="space-y-2.5 text-sm text-neutral-300">
+            <ul className="space-y-2.5 text-sm text-white">
               <li>
-                <Link href="/" className="hover:text-[#E6DA34] transition-colors">
+                <Link href="/" className="hover:text-[#FCEE57] transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#E6DA34] transition-colors">
+                <Link href="/about" className="hover:text-[#FCEE57] transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/menu" className="hover:text-[#E6DA34] transition-colors">
+                <Link href="/menu" className="hover:text-[#FCEE57] transition-colors">
                   Our Menu
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="hover:text-[#E6DA34] transition-colors">
+                <Link href="/gallery" className="hover:text-[#FCEE57] transition-colors">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#E6DA34] transition-colors">
+                <Link href="/contact" className="hover:text-[#FCEE57] transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-[#E6DA34] transition-colors">
+                <Link href="/faq" className="hover:text-[#FCEE57] transition-colors">
                   FAQ
                 </Link>
               </li>
@@ -109,30 +109,30 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Contacts */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4 border-b-2 border-[#E6DA34] pb-1 inline-block font-serif">
+            <h3 className="text-lg font-bold text-white mb-4 border-b-2 border-[#FCEE57] pb-1 inline-block font-serif">
               Contacts
             </h3>
-            <ul className="space-y-3 text-sm text-neutral-300">
+            <ul className="space-y-3 text-sm text-white">
               <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#E6DA34] shrink-0" />
+                <Mail className="w-4 h-4 text-[#FCEE57] shrink-0" />
                 <a href="mailto:Pohewalacare@gmail.com" className="hover:underline">
                   Pohewalacare@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#E6DA34] shrink-0" />
+                <Phone className="w-4 h-4 text-[#FCEE57] shrink-0" />
                 <a href="tel:+919923000480" className="hover:underline">
                   +91-9923000480
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#E6DA34] shrink-0" />
+                <Phone className="w-4 h-4 text-[#FCEE57] shrink-0" />
                 <a href="tel:+918888843354" className="hover:underline">
                   +91-8888843354
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#E6DA34] shrink-0" />
+                <Phone className="w-4 h-4 text-[#FCEE57] shrink-0" />
                 <a href="tel:+919552714131" className="hover:underline">
                   +91-9552714131
                 </a>
@@ -142,12 +142,12 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Address */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4 border-b-2 border-[#E6DA34] pb-1 inline-block font-serif">
+            <h3 className="text-lg font-bold text-white mb-4 border-b-2 border-[#FCEE57] pb-1 inline-block font-serif">
               Address
             </h3>
-            <div className="space-y-4 text-sm text-neutral-300">
+            <div className="space-y-4 text-sm text-white">
               <div>
-                <div className="flex items-center gap-1.5 font-bold text-[#E6DA34]">
+                <div className="flex items-center gap-1.5 font-bold text-[#FCEE57]">
                   <MapPin className="w-4 h-4" /> Head office
                 </div>
                 <p className="mt-1 leading-snug">
@@ -156,7 +156,7 @@ export const Footer: React.FC = () => {
               </div>
 
               <div>
-                <div className="flex items-center gap-1.5 font-bold text-[#E6DA34]">
+                <div className="flex items-center gap-1.5 font-bold text-[#FCEE57]">
                   <MapPin className="w-4 h-4" /> Regional office
                 </div>
                 <p className="mt-1 leading-snug">
@@ -170,7 +170,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Yellow Copyright Bar */}
-      <div className="bg-[#E6DA34] text-neutral-900 py-3 text-xs md:text-sm font-semibold">
+      <div className="bg-[#FCEE57] text-black py-3 text-xs md:text-sm font-semibold">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2">
           <span>Copyright@2026 Pohewala. All Rights Reserved.</span>
           <div className="flex items-center gap-4">

@@ -163,7 +163,7 @@ export default function FAQPage() {
       <section className="text-center space-y-6 max-w-5xl mx-auto px-4 pt-6 sm:pt-10">
         <h1
           className="font-serif font-bold text-[32px] sm:text-[40px] md:text-[50px] lg:text-[58px] leading-[1.1] text-white"
-          style={{ textShadow: "0 15.7px 16px rgba(255,174,0,.01), 0 30px 92px rgba(255,174,0,.28)" }}
+          style={{ textShadow: "0 15.7px 16px rgba(252,238,87,.01), 0 30px 92px rgba(252,238,87,.28)" }}
         >
           Frequently Asked{" "}
           <span className="text-[#FCEE57]">Questions</span>
@@ -173,7 +173,7 @@ export default function FAQPage() {
           <span className="block w-2 h-2 bg-[#FCEE57] rounded-full" />
           <span className="block w-16 h-[2px] bg-[#FCEE57]/40 rounded-full" />
         </div>
-        <p className="text-neutral-200 text-sm sm:text-base md:text-lg leading-relaxed font-medium max-w-5xl mx-auto">
+        <p className="text-white text-sm sm:text-base md:text-lg leading-relaxed font-medium max-w-5xl mx-auto">
           In a city like Nagpur, where mornings start with the aroma of tarri poha, two young minds decided to turn this everyday dish into something extraordinary.
         </p>
       </section>
@@ -192,7 +192,7 @@ export default function FAQPage() {
 
             {/* Category Title */}
             <motion.div variants={fadeUp} className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-[#FFE54C] flex items-center justify-center shadow-[0_6px_16px_rgba(255,229,76,.35)] font-serif font-bold text-neutral-900 text-base">
+              <span className="w-10 h-10 rounded-full bg-[#FCEE57] flex items-center justify-center shadow-[0_6px_16px_rgba(252,238,87,.35)] font-serif font-bold text-black text-base">
                 {String(catIdx + 1).padStart(2, "0")}
               </span>
               <h2 className="font-serif font-bold text-[22px] sm:text-[26px] lg:text-[30px] text-white">
@@ -210,7 +210,7 @@ export default function FAQPage() {
                     variants={fadeUp}
                     className={`rounded-[18px] overflow-hidden transition-all duration-300 ${
                       isOpen
-                        ? "bg-gradient-to-r from-[#FCEE57] to-[#FFE84D] shadow-[0_18px_35px_rgba(252,238,87,.18),0_6px_15px_rgba(0,0,0,.08)]"
+                        ? "bg-gradient-to-r from-[#FCEE57] to-[#FCEE57] shadow-[0_18px_35px_rgba(252,238,87,.18),0_6px_15px_rgba(0,0,0,.08)]"
                         : "bg-white shadow-[0_10px_25px_rgba(0,0,0,.12),0_4px_10px_rgba(0,0,0,.06)] hover:-translate-y-0.5 hover:shadow-[0_16px_35px_rgba(0,0,0,.16)]"
                     }`}
                   >
@@ -223,15 +223,15 @@ export default function FAQPage() {
                         <span
                           className={`w-10 h-10 rounded-full flex items-center justify-center text-base font-serif font-bold shrink-0 transition-colors duration-300 ${
                             isOpen
-                              ? "bg-white text-neutral-900 shadow-[0_4px_10px_rgba(0,0,0,.12)]"
-                              : "bg-[#FFF7C5] text-[#999]"
+                              ? "bg-white text-black shadow-[0_4px_10px_rgba(0,0,0,.12)]"
+                              : "bg-[#FFFFFF] text-[#BCBCBC]"
                           }`}
                         >
                           {item.number}
                         </span>
                         <span
                           className={`font-sans font-semibold text-[15px] sm:text-[17px] leading-snug ${
-                            isOpen ? "text-[#232323]" : "text-[#1E1E1E]"
+                            isOpen ? "text-[#000000]" : "text-[#000000]"
                           }`}
                         >
                           {item.question}
@@ -241,8 +241,8 @@ export default function FAQPage() {
                       <span
                         className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
                           isOpen
-                            ? "bg-[#232323] text-white rotate-180"
-                            : "bg-[#FCEE57]/20 text-[#232323]"
+                            ? "bg-[#000000] text-white rotate-180"
+                            : "bg-[#FCEE57]/20 text-[#000000]"
                         }`}
                       >
                         {isOpen ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
@@ -258,13 +258,13 @@ export default function FAQPage() {
                           transition={{ duration: 0.3, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-[#232323]/10">
+                          <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-[#000000]/10">
                             <div className="flex items-center gap-2 pb-3">
-                              <span className="w-6 h-[2px] bg-[#232323]/30 rounded-full" />
-                              <span className="w-1.5 h-1.5 bg-[#232323]/30 rounded-full" />
-                              <span className="w-6 h-[2px] bg-[#232323]/30 rounded-full" />
+                              <span className="w-6 h-[2px] bg-[#000000]/30 rounded-full" />
+                              <span className="w-1.5 h-1.5 bg-[#000000]/30 rounded-full" />
+                              <span className="w-6 h-[2px] bg-[#000000]/30 rounded-full" />
                             </div>
-                            <p className="font-sans font-medium text-[14px] sm:text-[15px] leading-relaxed text-[#444] max-w-2xl">
+                            <p className="font-sans font-medium text-[14px] sm:text-[15px] leading-relaxed text-[#666666] max-w-2xl">
                               {item.answer}
                             </p>
                           </div>
@@ -298,16 +298,16 @@ export default function FAQPage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 space-y-10">
           <div className="text-center space-y-4 max-w-2xl mx-auto">
-            <h2 className="font-serif font-bold text-[30px] sm:text-[38px] lg:text-[46px] leading-[1.15] text-[#232323]">
+            <h2 className="font-serif font-bold text-[30px] sm:text-[38px] lg:text-[46px] leading-[1.15] text-[#000000]">
               Find Pohewala, Wherever You Are
             </h2>
-            <p className="font-sans font-semibold text-[15px] sm:text-[17px] italic text-[#7A6E00]">
+            <p className="tagline text-[17px] sm:text-[19px] text-[#000000]">
               &ldquo;Expanding to 20+ Cities and Beyond!&rdquo;
             </p>
             <div className="flex items-center justify-center gap-2">
-              <span className="block w-16 h-[2px] bg-[#232323]/25 rounded-full" />
-              <span className="block w-2 h-2 bg-[#232323] rounded-full" />
-              <span className="block w-16 h-[2px] bg-[#232323]/25 rounded-full" />
+              <span className="block w-16 h-[2px] bg-[#000000]/25 rounded-full" />
+              <span className="block w-2 h-2 bg-[#000000] rounded-full" />
+              <span className="block w-16 h-[2px] bg-[#000000]/25 rounded-full" />
             </div>
           </div>
 
@@ -323,11 +323,11 @@ export default function FAQPage() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="bg-white text-neutral-900 px-4 py-2 rounded-full font-sans font-semibold text-xs sm:text-sm shadow-[0_8px_20px_rgba(0,0,0,.1)] flex items-center gap-2 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,.15)]"
+                className="bg-white text-black px-4 py-2 rounded-full font-sans font-semibold text-xs sm:text-sm shadow-[0_8px_20px_rgba(0,0,0,.1)] flex items-center gap-2 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,.15)]"
               >
-                <MapPin className="w-4 h-4 text-[#C9A800]" fill="#FCEE57" />
+                <MapPin className="w-4 h-4 text-[#000000]" fill="#FCEE57" />
                 <span>{c.name}</span>
-                <span className="bg-[#FCEE57] text-neutral-900 px-2 py-0.5 rounded-full text-xs font-bold">
+                <span className="bg-[#FCEE57] text-black px-2 py-0.5 rounded-full text-xs font-bold">
                   {c.count}
                 </span>
               </motion.div>

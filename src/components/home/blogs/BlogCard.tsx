@@ -40,32 +40,32 @@ export const BlogCard: React.FC<BlogCardProps> = ({
     <div className="h-[290px] p-6 flex flex-col">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0 ring-2 ring-gray-100">
+          <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0 ring-2 ring-[#BCBCBC]">
             <Image src={avatar} alt={author} fill className="object-cover" sizes="40px" />
           </div>
-          <span className="font-medium text-[15px] text-[#333]">{author}</span>
+          <span className="font-medium text-[15px] text-[#666666]">{author}</span>
         </div>
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5 text-[13px] text-[#666] group-hover:text-[#444] transition-colors duration-300">
+          <div className="flex items-center gap-1.5 text-[13px] text-[#BCBCBC] transition-colors duration-300">
             <Eye size={16} className="group-hover:scale-110 transition-transform duration-300" />
             <span>{views}</span>
           </div>
-          <div className="flex items-center gap-1.5 text-[13px] text-[#666] group-hover:text-[#444] transition-colors duration-300">
+          <div className="flex items-center gap-1.5 text-[13px] text-[#BCBCBC] transition-colors duration-300">
             <MessageCircle size={16} className="group-hover:scale-110 transition-transform duration-300" />
             <span>{comments}</span>
           </div>
         </div>
       </div>
-      <div className="w-full h-px bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 my-4" />
-      <p className="text-[20px] font-medium text-[#444] leading-relaxed flex-1 whitespace-pre-line group-hover:text-[#333] transition-colors duration-300">
+      <div className="w-full h-px bg-gradient-to-r from-[#BCBCBC] via-white to-[#BCBCBC] my-4" />
+      <p className="font-serif text-[20px] font-medium text-black leading-relaxed flex-1 whitespace-pre-line transition-colors duration-300">
         {title}
       </p>
       <div className="flex items-center justify-between mt-auto">
-        <span className="text-[14px] text-[#888]">{date}</span>
+        <span className="text-[14px] text-[#BCBCBC]">{date}</span>
         <div className="flex items-center gap-2 group/btn">
-          <span className="text-[14px] font-medium text-[#666] group-hover:text-[#333] transition-colors duration-300">Read More</span>
-          <div className="w-11 h-11 rounded-full bg-[#FFD93D] flex items-center justify-center flex-shrink-0 group-hover/btn:bg-[#f5d030] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300">
-            <ArrowRight size={20} className="text-black group-hover:translate-x-0.5 transition-transform duration-300" />
+          <span className="text-[14px] font-medium text-[#BCBCBC] transition-colors duration-300">Read More</span>
+          <div className="w-11 h-11 rounded-full bg-[#FCEE57] flex items-center justify-center flex-shrink-0 group-hover/btn:bg-black group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300">
+            <ArrowRight size={20} className="text-black group-hover/btn:text-[#FCEE57] group-hover:translate-x-0.5 transition-transform duration-300" />
           </div>
         </div>
       </div>

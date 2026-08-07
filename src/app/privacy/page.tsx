@@ -12,7 +12,7 @@ const Section = ({
   children: React.ReactNode;
 }) => (
   <Reveal className="mt-9">
-    <h2 className="text-xl sm:text-2xl font-bold text-[#F2D93B]">
+    <h2 className="text-xl sm:text-2xl font-bold text-[#FCEE57]">
       {number}. {title}
     </h2>
     <div className="mt-3 space-y-3">{children}</div>
@@ -20,32 +20,32 @@ const Section = ({
 );
 
 const BulletList = ({ items }: { items: Array<[string, string]> }) => (
-  <ul className="list-disc pl-5 marker:text-[#F2D93B]/70 space-y-2.5">
+  <ul className="list-disc pl-5 marker:text-[#FCEE57]/70 space-y-2.5">
     {items.map(([lead, rest]) => (
       <li key={lead} className="leading-[1.7]">
-        <span className="font-bold text-neutral-200">{lead}:</span>{" "}
-        <span className="text-neutral-300">{rest}</span>
+        <span className="font-bold text-white">{lead}:</span>{" "}
+        <span className="text-white">{rest}</span>
       </li>
     ))}
   </ul>
 );
 
 const Body = ({ children }: { children: React.ReactNode }) => (
-  <p className="text-neutral-300 leading-[1.7]">{children}</p>
+  <p className="text-white leading-[1.7]">{children}</p>
 );
 
 export default function PrivacyPage() {
   return (
     <div>
       {/* 1. PAGE TITLE BANNER */}
-      <section className="bg-[#F2D93B] text-neutral-900 py-14 sm:py-16 px-4 text-center space-y-4">
+      <section className="bg-[#FCEE57] text-black py-14 sm:py-16 px-4 text-center space-y-4">
         <Reveal>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight font-serif">
             Privacy Policy
           </h1>
         </Reveal>
         <Reveal delay={0.15}>
-          <p className="text-neutral-800 text-sm sm:text-base font-medium max-w-[700px] mx-auto leading-relaxed">
+          <p className="text-[#666666] text-sm sm:text-base font-medium max-w-[700px] mx-auto leading-relaxed">
             In a city like Nagpur, where mornings start with the aroma of tarri poha, two young minds
             decided to turn this everyday dish into something extraordinary.
           </p>
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
       {/* 2. POLICY CONTENT BODY */}
       <section className="py-16 sm:py-20">
         <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-neutral-300 leading-[1.7]">
+          <p className="text-white leading-[1.7]">
             At Pohewala, your privacy is important to us. This Privacy Policy outlines the types of
             information we collect, how we use it, and the measures we take to protect it.
           </p>
@@ -153,13 +153,13 @@ export default function PrivacyPage() {
               If you have any questions or concerns about this Privacy Policy or how we handle your
               information, please reach out to us.
             </Body>
-            <div className="pt-1 space-y-1.5 text-neutral-300 leading-[1.7]">
+            <div className="pt-1 space-y-1.5 text-white leading-[1.7]">
               <p>Contact us at:</p>
               <p>
                 Email:{" "}
                 <a
                   href="mailto:chahulcreations@gmail.com"
-                  className="text-[#F2D93B] underline font-medium hover:text-white transition"
+                  className="text-[#FCEE57] underline font-medium hover:text-white transition"
                 >
                   chahulcreations@gmail.com
                 </a>

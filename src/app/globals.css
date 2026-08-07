@@ -1,14 +1,111 @@
 @import "tailwindcss";
 
+/* ===== Pohewala Brand Typefaces =====
+   Drop the licensed font files in public/fonts/ with these exact names.
+   The @font-face blocks list several extensions; the browser uses the
+   first file it can load. Until files land, the fallback stacks apply. */
+
+@font-face {
+  font-family: "Panton Black Caps";
+  src: url("/fonts/Panton/PantonDemoBlack.otf") format("opentype");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hartwell Alt Regular";
+  src: url("/fonts/Hartwell Alt/Hartwell Alt Regular.otf") format("opentype");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Romic Std Extra Bold";
+  src: url("/fonts/Romic Std Extra Bold/Romic Std Extra Bold.otf") format("opentype");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lobster";
+  src: url("/fonts/Lobster/Lobster-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Pohewala Brand Design Tokens */
+:root {
+  --color-primary-yellow: #fcee57;
+  --color-dark-grey: #666666;
+  --color-light-grey: #bcbcbc;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Gradient preset combining Dark and Light Neutrals */
+  --neutral-gradient: linear-gradient(135deg, var(--color-dark-grey), var(--color-light-grey));
+
+  --font-heading: "Panton Black Caps", "Arial Black", "Franklin Gothic Heavy", sans-serif;
+  --font-body: "Hartwell Alt Regular", "Helvetica Neue", Arial, sans-serif;
+  --font-logo: "Romic Std Extra Bold", Georgia, "Times New Roman", serif;
+  --font-tagline: "Lobster", "Brush Script MT", cursive;
+}
+
+/* Pohewala Brand Colors */
+@theme {
+  --color-brand: #FCEE57;
+  --color-ink: #000000;
+  --color-grey-dark: #666666;
+  --color-grey-light: #BCBCBC;
+  --font-sans: var(--font-body);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+
+.logo-text {
+  font-family: var(--font-logo);
+  font-weight: 800;
+}
+
+.tagline,
+.accent-text,
+blockquote {
+  font-family: var(--font-tagline);
+  font-weight: 400;
+}
+
+/* Neutral gradient for background elements/cards */
+.neutral-card,
+.gradient-bg {
+  background: var(--neutral-gradient);
+}
+
 .bg-pohe-gradient {
-    background: linear-gradient(90deg, #3a3a3a 0%, #4D4D4D 50%, #818181 100% ); }
+    background: linear-gradient(90deg, var(--color-dark-grey) 0%, #919191 50%, var(--color-light-grey) 100%);
+}
 
 .font-serif {
-  font-family: var(--font-serif), "Georgia", "Times New Roman", serif;
+  font-family: var(--font-heading);
 }
 
 .font-inter {
-  font-family: var(--font-inter), "Arial", sans-serif;
+  font-family: var(--font-body);
+}
+
+.font-lobster {
+  font-family: var(--font-tagline);
 }
 
 ::-webkit-scrollbar {
@@ -16,14 +113,14 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #3a3a3a;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #E6DA34;
+  background: #FCEE57;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D8CA24;
+  background: #666666;
 }
 
 @keyframes float-about {

@@ -1,16 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Playfair_Display } from "next/font/google";
 import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TestimonialCard } from "./testimonials/TestimonialCard";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["700"],
-  display: "swap",
-});
 
 const testimonials = [
   {
@@ -95,21 +88,21 @@ export const TestimonialSection: React.FC = () => {
   const visible = testimonials.slice(index, index + STEP);
 
   return (
-    <section className="relative w-full bg-pohe-gradient border-t-[6px] border-[#FFF25A] overflow-hidden">
+    <section className="relative w-full bg-pohe-gradient border-t-[6px] border-[#FCEE57] overflow-hidden">
       <style>{`
         @keyframes float-star { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-8px) rotate(8deg)} }
         @keyframes float-star-delayed { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(6px) rotate(-6deg)} }
       `}</style>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#FFF25A]/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />
-        <div className="absolute text-[#FFF25A]/8 top-12 left-[15%] hidden lg:block" style={{ animation: "float-star 4s ease-in-out infinite" }}>
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#FCEE57]/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />
+        <div className="absolute text-[#FCEE57]/8 top-12 left-[15%] hidden lg:block" style={{ animation: "float-star 4s ease-in-out infinite" }}>
           <Star size={24} fill="currentColor" />
         </div>
-        <div className="absolute text-[#FFF25A]/6 bottom-20 right-[20%] hidden lg:block" style={{ animation: "float-star-delayed 5s ease-in-out infinite" }}>
+        <div className="absolute text-[#FCEE57]/6 bottom-20 right-[20%] hidden lg:block" style={{ animation: "float-star-delayed 5s ease-in-out infinite" }}>
           <Star size={18} fill="currentColor" />
         </div>
-        <div className="absolute text-[#FFF25A]/5 top-1/3 right-[10%] hidden lg:block" style={{ animation: "float-star 6s ease-in-out infinite 1s" }}>
+        <div className="absolute text-[#FCEE57]/5 top-1/3 right-[10%] hidden lg:block" style={{ animation: "float-star 6s ease-in-out infinite 1s" }}>
           <Star size={14} fill="currentColor" />
         </div>
       </div>
@@ -133,7 +126,7 @@ export const TestimonialSection: React.FC = () => {
                 <Star
                   key={s}
                   size={16}
-                  className="text-[#FFF25A] fill-[#FFF25A]"
+                  className="text-[#FCEE57] fill-[#FCEE57]"
                 />
               ))}
             </motion.div>
@@ -142,7 +135,7 @@ export const TestimonialSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="inline-block text-[#FFE84D] font-bold text-[20px] border-b-2 border-[#FFE84D] pb-0.5"
+              className="inline-block text-[#FCEE57] font-bold text-[20px] border-b-2 border-[#FCEE57] pb-0.5"
             >
               Testimonial
             </motion.span>
@@ -151,7 +144,7 @@ export const TestimonialSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className={`${playfair.className} font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-6xl leading-[1.15] mt-5 sm:mt-7 mb-8 sm:mb-12`}
+              className="font-serif font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-6xl leading-[1.15] mt-5 sm:mt-7 mb-8 sm:mb-12"
             >
               What They
               <br />
@@ -196,7 +189,7 @@ export const TestimonialSection: React.FC = () => {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             className="w-full lg:w-[60%] relative"
           >
-            <div className="absolute bg-[#FFF25A] rounded-[40px] w-[700px] h-[360px] -right-12 top-1/2 -translate-y-1/2 z-0 hidden lg:block" />
+            <div className="absolute bg-[#FCEE57] rounded-[40px] w-[700px] h-[360px] -right-12 top-1/2 -translate-y-1/2 z-0 hidden lg:block" />
             <div className="relative z-10 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div

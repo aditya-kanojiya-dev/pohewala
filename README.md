@@ -18,6 +18,24 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Environment & Database Setup
+
+The contact, franchise and "Enquire Now" forms write to a Postgres database
+and are visible behind an admin login. To run locally or deploy:
+
+1. Copy `.env.example` to `.env.local` and fill in the values.
+2. Set `DATABASE_URL` to a Postgres connection string (Neon, Supabase,
+   Vercel Postgres, RDS...). The `leads` and `login_attempts` tables are
+   created automatically on first use — no manual schema step required.
+3. Set `ADMIN_PASSWORD` (and optionally `AUTH_SECRET`).
+4. Set `NEXT_PUBLIC_SITE_URL` to the real domain so canonical URLs, the
+   sitemap and robots.txt point at the production site.
+5. View received enquiries at `/admin` (e.g. `https://yourdomain.com/admin`).
+
+> Vercel serverless note: the filesystem is ephemeral, so the site requires a
+> managed Postgres (not a local file). Pools are capped at one connection to
+> respect serverless connection limits.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

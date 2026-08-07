@@ -155,7 +155,7 @@ export const FindPohewalaSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="font-serif font-bold text-[26px] sm:text-[30px] md:text-[38px] lg:text-[48px] xl:text-[56px] leading-[1.15] lg:leading-[1.1] text-[#232323] pt-[80px] sm:pt-[90px] md:pt-[120px] lg:pt-[180px] xl:pt-[220px]"
+          className="font-serif font-bold text-[26px] sm:text-[30px] md:text-[38px] lg:text-[48px] xl:text-[56px] leading-[1.15] lg:leading-[1.1] text-[#000000] pt-[80px] sm:pt-[90px] md:pt-[120px] lg:pt-[180px] xl:pt-[220px]"
         >
           Find Pohewala, Wherever You Are
         </motion.h2>
@@ -176,7 +176,7 @@ export const FindPohewalaSection: React.FC = () => {
                 className={`shrink-0 h-10 sm:h-12 rounded-[10px] font-semibold text-[13px] sm:text-[15px] px-4 sm:px-6 transition-all duration-200 ${
                   isActive
                     ? "bg-white text-black shadow-[0_4px_16px_rgba(252,238,87,.4)]"
-                    : "bg-[#FFF7C5] text-[#666] border border-black/8 hover:bg-white"
+                    : "bg-[#FFFFFF] text-[#666666] border border-black/8 hover:bg-white"
                 }`}
               >
                 {s.label}
@@ -213,9 +213,9 @@ export const FindPohewalaSection: React.FC = () => {
                         sizes="(max-width: 480px) 85vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         loading={i < 4 ? "eager" : "lazy"}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#232323]/40 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/40 via-transparent to-transparent" />
                       <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
-                        <span className="inline-flex items-center gap-1 bg-gradient-to-r from-[#FCEE57] to-[#FFE84D] text-[#232323] text-[10px] sm:text-[11px] font-bold px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-[0_4px_12px_rgba(252,238,87,.3)] transition-transform duration-300 ease-out group-hover:scale-105">
+                        <span className="inline-flex items-center gap-1 bg-gradient-to-r from-[#FCEE57] to-[#FCEE57] text-[#000000] text-[10px] sm:text-[11px] font-bold px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-[0_4px_12px_rgba(252,238,87,.3)] transition-transform duration-300 ease-out group-hover:scale-105">
                           <span className="w-2 h-2 rounded-full bg-current opacity-60" />
                           <AnimatedCount to={o.count} /> Outlet{o.count > 1 ? "s" : ""}
                         </span>
@@ -224,16 +224,16 @@ export const FindPohewalaSection: React.FC = () => {
                     </div>
                     <div className="py-2 sm:py-3 px-1 sm:px-1.5 flex flex-col flex-1">
                       <div className="flex items-center justify-between">
-                        <h3 className="font-serif font-bold text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-[#232323] leading-tight relative">
+                        <h3 className="font-serif font-bold text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-[#000000] leading-tight relative">
                           {o.city}
                           <span className="block w-6 sm:w-8 h-[2px] bg-[#FCEE57] mt-1 rounded-full transition-all duration-300 group-hover:w-8 sm:group-hover:w-12" />
                         </h3>
                       </div>
-                      <div className="flex items-center gap-1.5 sm:gap-2 mt-auto pt-2 sm:pt-3 text-[#999] text-[11px] sm:text-[12px] font-medium group-hover:text-[#232323] transition-colors duration-300">
+                      <div className="flex items-center gap-1.5 sm:gap-2 mt-auto pt-2 sm:pt-3 text-[#BCBCBC] text-[11px] sm:text-[12px] font-medium group-hover:text-[#000000] transition-colors duration-300">
                         <MapPin size={12} className="sm:w-[14px] sm:h-[14px]" />
                         <span className="flex-1">View Outlets</span>
                         <div className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-[#FCEE57]/20 flex items-center justify-center group-hover:bg-[#FCEE57]/40 transition-all duration-300 group-hover:translate-x-0.5">
-                          <ArrowRight size={10} strokeWidth={2.5} className="text-[#232323] sm:w-[11px] sm:h-[11px] lg:w-[12px] lg:h-[12px]" />
+                          <ArrowRight size={10} strokeWidth={2.5} className="text-[#000000] sm:w-[11px] sm:h-[11px] lg:w-[12px] lg:h-[12px]" />
                         </div>
                       </div>
                     </div>
@@ -252,11 +252,11 @@ export const FindPohewalaSection: React.FC = () => {
           className="w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] md:w-[44px] md:h-[44px] rounded-full bg-white shadow-[0_4px_16px_rgba(0,0,0,.1)] flex items-center justify-center hover:scale-110 hover:shadow-[0_4px_20px_rgba(252,238,87,.3)] transition-all duration-300 active:scale-95"
           aria-label="Previous outlets"
         >
-          <ChevronLeft size={14} strokeWidth={2.5} className="text-[#222] sm:w-[16px] sm:h-[16px] md:w-[18px] md:h-[18px]" />
+          <ChevronLeft size={14} strokeWidth={2.5} className="text-[#666666] sm:w-[16px] sm:h-[16px] md:w-[18px] md:h-[18px]" />
         </button>
         <button
           onClick={scrollNext}
-          className="w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] md:w-[44px] md:h-[44px] rounded-full bg-[#232323] shadow-[0_4px_16px_rgba(0,0,0,.15)] flex items-center justify-center hover:scale-110 hover:shadow-[0_4px_20px_rgba(252,238,87,.25)] transition-all duration-300 active:scale-95"
+          className="w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] md:w-[44px] md:h-[44px] rounded-full bg-[#000000] shadow-[0_4px_16px_rgba(0,0,0,.15)] flex items-center justify-center hover:scale-110 hover:shadow-[0_4px_20px_rgba(252,238,87,.25)] transition-all duration-300 active:scale-95"
           aria-label="Next outlets"
         >
           <ChevronRight size={14} strokeWidth={2.5} className="text-white sm:w-[16px] sm:h-[16px] md:w-[18px] md:h-[18px]" />

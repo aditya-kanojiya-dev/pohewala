@@ -36,7 +36,7 @@ export const InstagramCard: React.FC<InstagramCardProps> = ({ image, alt }) => {
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
           </svg>
-          <span className="text-[11px] font-semibold text-[#333]">Instagram</span>
+          <span className="text-[11px] font-semibold text-[#666666]">Instagram</span>
         </div>
       </div>
     </div>

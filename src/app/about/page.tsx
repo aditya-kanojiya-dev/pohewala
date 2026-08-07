@@ -93,7 +93,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-          className="text-[#E6DA34] text-sm sm:text-base md:text-lg leading-relaxed font-medium max-w-5xl mx-auto"
+          className="text-[#FCEE57] text-sm sm:text-base md:text-lg leading-relaxed font-medium max-w-5xl mx-auto"
         >
           In a city like Nagpur, where mornings start with the aroma of tarri poha, two young minds decided to turn this everyday dish into something extraordinary.
         </motion.p>
@@ -117,14 +117,14 @@ export default function AboutPage() {
           <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-black text-white font-serif [text-shadow:4px_4px_0_rgba(0,0,0,0.5)]">
             What Makes Us Different
           </h2>
-          <p className="text-[#E6DA34] text-sm sm:text-base">
+          <p className="text-[#FCEE57] text-sm sm:text-base">
             In a city like Nagpur, where mornings start with the aroma of tarri poha, two young minds decided to turn this everyday dish into something extraordinary.
           </p>
         </motion.div>
 
         <motion.div
           variants={fadeUp}
-          className="bg-neutral-900 rounded-[36px] p-6 sm:p-10 lg:p-12 shadow-[12px_12px_0_0_rgba(230,218,52,0.4)] relative overflow-hidden border-[3px] border-neutral-950"
+          className="bg-black rounded-[36px] p-6 sm:p-10 lg:p-12 shadow-[12px_12px_0_0_rgba(252,238,87,0.4)] relative overflow-hidden border-[3px] border-black"
         >
           <Image
             src="/images/ingredients.png"
@@ -149,7 +149,7 @@ export default function AboutPage() {
         <motion.div variants={fadeUp} className="text-center mb-14 lg:mb-20">
           <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-black text-white font-serif leading-tight [text-shadow:4px_4px_0_rgba(0,0,0,0.5)]">
             At Pohewala, We{" "}
-            <span className="text-[#E6DA34]">Strive For</span>
+            <span className="text-[#FCEE57]">Strive For</span>
           </h2>
         </motion.div>
 
@@ -168,13 +168,13 @@ export default function AboutPage() {
               <path
                 id="flow-path"
                 d={flowPath.d}
-                stroke="#E6DA34"
+                stroke="#FCEE57"
                 strokeWidth="3"
                 strokeLinecap="round"
                 strokeDasharray="8 10"
               />
               <g>
-                <path d="M 0 0 L 14 7 L 0 14 Z" fill="#E6DA34" />
+                <path d="M 0 0 L 14 7 L 0 14 Z" fill="#FCEE57" />
                 <animateMotion dur="4s" repeatCount="indefinite" rotate="auto">
                   <mpath href="#flow-path" />
                 </animateMotion>
@@ -194,34 +194,34 @@ export default function AboutPage() {
                   ref={(el) => {
                     circleRefs.current[i] = el;
                   }}
-                  className={`relative rounded-full flex flex-col items-center justify-center text-center px-7 pt-12 pb-8 gap-2.5 border-[3px] border-neutral-950 w-[280px] h-[280px] lg:w-[320px] lg:h-[320px] shadow-[10px_10px_0_0_rgba(0,0,0,0.45)] ${
-                    highlighted ? "bg-[#E6DA34]" : "bg-white"
+                  className={`relative rounded-full flex flex-col items-center justify-center text-center px-7 pt-12 pb-8 gap-2.5 border-[3px] border-black w-[280px] h-[280px] lg:w-[320px] lg:h-[320px] shadow-[10px_10px_0_0_rgba(0,0,0,0.45)] ${
+                    highlighted ? "bg-[#FCEE57]" : "bg-white"
                   }`}
                 >
                   <span
-                    className={`absolute -top-4 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full flex items-center justify-center border-[3px] border-neutral-950 text-base font-black font-serif ${
-                      highlighted ? "bg-white text-neutral-950" : "bg-[#E6DA34] text-neutral-950"
+                    className={`absolute -top-4 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full flex items-center justify-center border-[3px] border-black text-base font-black font-serif ${
+                      highlighted ? "bg-white text-black" : "bg-[#FCEE57] text-black"
                     }`}
                   >
                     {i + 1}
                   </span>
                   <span
-                    className={`w-14 h-14 rounded-full flex items-center justify-center border-[3px] border-neutral-950 ${
-                      highlighted ? "bg-white" : "bg-[#E6DA34]"
+                    className={`w-14 h-14 rounded-full flex items-center justify-center border-[3px] border-black ${
+                      highlighted ? "bg-white" : "bg-[#FCEE57]"
                     }`}
                   >
-                    <item.icon className="w-7 h-7 text-neutral-900" strokeWidth={2.5} />
+                    <item.icon className="w-7 h-7 text-black" strokeWidth={2.5} />
                   </span>
                   <span
                     className={`font-black text-lg tracking-wide font-serif ${
-                      highlighted ? "text-neutral-950" : "text-neutral-950"
+                      highlighted ? "text-black" : "text-black"
                     }`}
                   >
                     {item.title}
                   </span>
                   <p
                     className={`text-xs leading-relaxed max-w-[240px] font-medium ${
-                      highlighted ? "text-neutral-900" : "text-neutral-800"
+                      highlighted ? "text-black" : "text-[#666666]"
                     }`}
                   >
                     {item.desc}
@@ -229,7 +229,7 @@ export default function AboutPage() {
                 </div>
                 </motion.div>
                 {i < strivePoints.length - 1 && (
-                  <span className="lg:hidden h-14 border-l-2 border-dashed border-[#E6DA34]/70" />
+                  <span className="lg:hidden h-14 border-l-2 border-dashed border-[#FCEE57]/70" />
                 )}
               </Fragment>
             );

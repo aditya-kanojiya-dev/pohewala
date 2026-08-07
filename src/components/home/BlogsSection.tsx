@@ -1,15 +1,8 @@
 "use client";
 
 import React from "react";
-import { Playfair_Display } from "next/font/google";
 import { motion } from "framer-motion";
 import { BlogCard } from "./blogs/BlogCard";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["700"],
-  display: "swap",
-});
 
 const blogPost = {
   title:
@@ -29,7 +22,7 @@ const blogPosts = [false, true, false].map((reverseLayout) => ({
 
 export const BlogsSection: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#FFF36A] py-[90px] overflow-hidden">
+    <section className="relative w-full bg-[#FCEE57] py-[90px] overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/20 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
@@ -37,7 +30,7 @@ export const BlogsSection: React.FC = () => {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center">
           <span className="inline-block w-12 h-1 bg-black/20 rounded-full mb-6" />
-          <h1 className={`${playfair.className} font-bold text-[32px] sm:text-[40px] lg:text-[56px] text-black text-center tracking-tight`}>
+          <h1 className="font-serif font-bold text-[32px] sm:text-[40px] lg:text-[56px] text-black text-center tracking-tight">
             Blogs
           </h1>
           <p className="mx-auto max-w-[850px] text-center text-[15px] sm:text-[17px] lg:text-[22px] font-semibold leading-[1.5] text-black/80 mt-5">

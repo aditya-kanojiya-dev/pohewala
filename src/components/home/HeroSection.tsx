@@ -137,7 +137,7 @@ export const HeroSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             className="font-serif font-semibold text-[28px] sm:text-[36px] md:text-[48px] lg:text-[72px] leading-[1.05] lg:leading-[100%] text-black"
-            style={{ textShadow: "0 15.7px 16px rgba(255,174,0,.01), 0 30px 92px rgba(255,174,0,.28)" }}
+            style={{ textShadow: "0 15.7px 16px rgba(252,238,87,.01), 0 30px 92px rgba(252,238,87,.28)" }}
           >
             India&apos;s First Authentic
             <br />
@@ -147,8 +147,8 @@ export const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
-            className="font-serif font-normal text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] text-black mt-3 sm:mt-4 lg:mt-6"
-            style={{ textShadow: "0 15.7px 16px rgba(255,174,0,.01), 0 30px 92px rgba(255,174,0,.28)" }}
+            className="tagline text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] text-black mt-3 sm:mt-4 lg:mt-6"
+            style={{ textShadow: "0 15.7px 16px rgba(252,238,87,.01), 0 30px 92px rgba(252,238,87,.28)" }}
           >
             Your ultimate food experience is here!
           </motion.p>
@@ -160,14 +160,14 @@ export const HeroSection: React.FC = () => {
           >
             <Link
               href="/contact"
-              className="font-inter font-bold text-[16px] sm:text-[18px] lg:text-[20px] text-white rounded-[10px] bg-gradient-to-r from-[#898989] to-[#4B4B4B] hover:-translate-y-[3px] hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(0,0,0,.18)] transition-all duration-200 flex items-center justify-center"
+              className="font-inter font-bold text-[16px] sm:text-[18px] lg:text-[20px] text-black rounded-[10px] bg-[#FCEE57] hover:-translate-y-[3px] hover:scale-[1.03] hover:bg-black hover:text-[#FCEE57] hover:shadow-[0_10px_25px_rgba(0,0,0,.18)] transition-all duration-200 flex items-center justify-center"
               style={{ width: "150px", height: "48px", maxWidth: "100%" }}
             >
               Enquire Now
             </Link>
             <Link
               href="/menu"
-              className="font-inter font-bold text-[16px] sm:text-[18px] lg:text-[20px] text-[#4B4B4B] rounded-[10px] border-2 border-[#4B4B4B] hover:-translate-y-[3px] hover:scale-[1.03] hover:shadow-[0_10px_25px_rgba(0,0,0,.18)] transition-all duration-200 flex items-center justify-center"
+              className="font-inter font-bold text-[16px] sm:text-[18px] lg:text-[20px] text-black rounded-[10px] bg-white border-2 border-black hover:-translate-y-[3px] hover:scale-[1.03] hover:bg-black hover:text-white hover:shadow-[0_10px_25px_rgba(0,0,0,.18)] transition-all duration-200 flex items-center justify-center"
               style={{ width: "150px", height: "48px", maxWidth: "100%" }}
             >
               Our Menu

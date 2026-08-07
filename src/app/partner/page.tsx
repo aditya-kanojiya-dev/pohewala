@@ -1,22 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { CTASection } from "@/components/cta/CTASection";
 import { ImagePlaceholder } from "@/components/shared/ImagePlaceholder";
 import { Reveal } from "@/components/shared/Reveal";
 import { Play, Send, CheckCircle2 } from "lucide-react";
 
 const inputClass =
-  "w-full bg-white border border-[#CFC9E8] rounded-full px-5 py-3 text-base text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-[#8B7FD0] focus:ring-4 focus:ring-[#CFC9E8]/40 transition";
+  "w-full bg-white border border-[#BCBCBC] rounded-full px-5 py-3 text-base text-black placeholder-[#BCBCBC] focus:outline-none focus:border-[#FCEE57] focus:ring-4 focus:ring-[#BCBCBC]/40 transition";
 
 const Label = ({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) => (
-  <label htmlFor={htmlFor} className="block text-sm font-medium text-neutral-800 mb-1.5">
+  <label htmlFor={htmlFor} className="block text-sm font-medium text-[#666666] mb-1.5">
     {children}
   </label>
 );
 
 const BulletList = ({ items }: { items: string[] }) => (
-  <ul className="list-disc pl-5 marker:text-[#F2D93B]/70 text-neutral-300 space-y-1.5 leading-[1.6]">
+  <ul className="list-disc pl-5 marker:text-[#FCEE57]/70 text-white space-y-1.5 leading-[1.6]">
     {items.map((item) => (
       <li key={item}>{item}</li>
     ))}
@@ -24,13 +24,16 @@ const BulletList = ({ items }: { items: string[] }) => (
 );
 
 const Tagline = () => (
-  <p className="text-neutral-200 italic font-medium">
+  <p className="tagline text-white text-[18px] sm:text-[20px]">
     Enjoy the taste of tradition with Pohewala &ndash; &lsquo;The Poha You Know&rsquo;!
   </p>
 );
 
 export default function PartnerPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -39,13 +42,39 @@ export default function PartnerPage() {
     city: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", phone: "", email: "", datetime: "", city: "" });
-    }, 3000);
+    if (sending) return;
+    setSending(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "franchise",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          city: formData.city,
+          extra: formData.datetime,
+          honeypot: honeypotRef.current?.value ?? "",
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: "", phone: "", email: "", datetime: "", city: "" });
+      }, 3000);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -58,7 +87,7 @@ export default function PartnerPage() {
           </h1>
         </Reveal>
         <Reveal delay={0.15}>
-          <p className="text-[#F2D93B] text-base sm:text-lg font-semibold">
+          <p className="text-[#FCEE57] text-base sm:text-lg font-semibold">
             Pocket Friendly Food Business Franchise Opportunity
           </p>
         </Reveal>
@@ -70,14 +99,14 @@ export default function PartnerPage() {
           {/* Decorative yellow swooshes behind the card */}
           <div
             aria-hidden
-            className="absolute -top-8 -left-10 w-64 h-10 bg-[#F2D93B]/40 rounded-full rotate-[30deg] pointer-events-none"
+            className="absolute -top-8 -left-10 w-64 h-10 bg-[#FCEE57]/40 rounded-full rotate-[30deg] pointer-events-none"
           />
           <div
             aria-hidden
-            className="absolute -bottom-10 -right-8 w-80 h-8 bg-[#F2D93B]/30 rounded-full -rotate-[25deg] pointer-events-none"
+            className="absolute -bottom-10 -right-8 w-80 h-8 bg-[#FCEE57]/30 rounded-full -rotate-[25deg] pointer-events-none"
           />
 
-          <div className="relative bg-[#EDEDF7] rounded-[30px] p-4 sm:p-6 lg:p-10">
+          <div className="relative bg-[#FFFFFF] rounded-[30px] p-4 sm:p-6 lg:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-[24px]">
               {/* Left: Video thumbnail */}
               <a
@@ -86,7 +115,7 @@ export default function PartnerPage() {
                 rel="noopener noreferrer"
                 className="relative group block"
               >
-                <div className="relative aspect-video lg:aspect-auto lg:h-full w-full overflow-hidden bg-neutral-900">
+                <div className="relative aspect-video lg:aspect-auto lg:h-full w-full overflow-hidden bg-black">
                   <ImagePlaceholder
                     label="Pohewala storefront at night"
                     aspectRatio="aspect-video lg:aspect-auto"
@@ -96,25 +125,34 @@ export default function PartnerPage() {
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition">
-                      <Play className="w-7 h-7 sm:w-8 sm:h-8 text-neutral-900 ml-1" />
+                      <Play className="w-7 h-7 sm:w-8 sm:h-8 text-black ml-1" />
                     </div>
                   </div>
                 </div>
               </a>
 
               {/* Right: Yellow enquiry form box */}
-              <div className="bg-[#F2D93B] p-6 sm:p-10">
+              <div className="bg-[#FCEE57] p-6 sm:p-10">
                 {submitted ? (
                   <div className="py-12 flex flex-col items-center text-center space-y-3">
                     <CheckCircle2 className="w-16 h-16 text-green-600 animate-bounce" />
-                    <h3 className="text-2xl font-bold text-neutral-900 font-serif">Thank You!</h3>
-                    <p className="text-sm text-neutral-700 font-medium max-w-xs">
+                    <h3 className="text-2xl font-bold text-black font-serif">Thank You!</h3>
+                    <p className="text-sm text-[#666666] font-medium max-w-xs">
                       Your enquiry has been received. The Pohewala franchise team will get back to
                       you shortly!
                     </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    <input
+                      ref={honeypotRef}
+                      type="text"
+                      name="honeypot"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      className="hidden"
+                    />
                     <div>
                       <Label htmlFor="p-name">Name</Label>
                       <input
@@ -162,7 +200,7 @@ export default function PartnerPage() {
                         required
                         value={formData.datetime}
                         onChange={(e) => setFormData({ ...formData, datetime: e.target.value })}
-                        className={`${inputClass} text-neutral-900`}
+                        className={`${inputClass} text-black`}
                       />
                     </div>
 
@@ -179,12 +217,19 @@ export default function PartnerPage() {
                       />
                     </div>
 
+                    {submitError && (
+                      <p className="text-sm text-red-600 font-medium bg-red-50 border border-red-200 rounded-lg px-4 py-2.5">
+                        {submitError}
+                      </p>
+                    )}
+
                     <div className="flex justify-end">
                       <button
                         type="submit"
-                        className="bg-neutral-950 hover:bg-neutral-800 active:scale-[0.98] cursor-pointer text-white font-bold px-8 py-3 rounded-full flex items-center justify-center gap-2 transition text-sm"
+                        disabled={sending}
+                        className="bg-black hover:bg-black active:scale-[0.98] disabled:opacity-60 cursor-pointer text-white font-bold px-8 py-3 rounded-full flex items-center justify-center gap-2 transition text-sm"
                       >
-                        <Send className="w-4 h-4 text-[#F2D93B]" /> Submit
+                        <Send className="w-4 h-4 text-[#FCEE57]" /> Submit
                       </button>
                     </div>
                   </form>
@@ -200,14 +245,14 @@ export default function PartnerPage() {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-serif">
           Franchise Models
         </h2>
-        <div className="w-16 h-1.5 bg-[#F2D93B] rounded-full mx-auto" />
+        <div className="w-16 h-1.5 bg-[#FCEE57] rounded-full mx-auto" />
       </Reveal>
 
       {/* 4. MODEL BLOCKS */}
       <Reveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         {/* Block 1 — QSR Model (image left) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="rounded-[24px] border-[3px] border-[#F2D93B] overflow-hidden shadow-2xl">
+          <div className="rounded-[24px] border-[3px] border-[#FCEE57] overflow-hidden shadow-2xl">
             <ImagePlaceholder
               label="QSR cafe interior with seating"
               aspectRatio="aspect-[4/3]"
@@ -216,10 +261,10 @@ export default function PartnerPage() {
             />
           </div>
           <div className="space-y-4">
-            <h3 className="text-2xl sm:text-3xl font-black text-[#F2D93B] font-serif">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#FCEE57] font-serif">
               QSR Model (Quick Service Restaurant)
             </h3>
-            <p className="text-neutral-300 leading-[1.6] font-medium">
+            <p className="text-white leading-[1.6] font-medium">
               Perfect for high-footfall areas like college zones, IT parks, shopping complexes, and
               busy streets.
             </p>
@@ -243,20 +288,20 @@ export default function PartnerPage() {
         {/* Block 2 — Sports Cafe (image right) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="space-y-4 lg:order-1">
-            <h3 className="text-2xl sm:text-3xl font-black text-[#F2D93B] font-serif">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#FCEE57] font-serif">
               Pohewala Sports Cafe
             </h3>
-            <p className="text-neutral-300 leading-[1.6] font-medium">
+            <p className="text-white leading-[1.6] font-medium">
               Ideal for youth-centric areas, malls, and premium localities where customers enjoy
               both food and entertainment.
             </p>
             <p className="text-white font-bold">Space Required: 1500 &ndash; 2000 sq. ft.</p>
             <p className="text-white font-bold">
-              Concept: <span className="text-neutral-300 font-medium">A unique combination of food and fun!</span>
+              Concept: <span className="text-white font-medium">A unique combination of food and fun!</span>
             </p>
             <p className="text-white font-bold">
               Menu Includes:{" "}
-              <span className="text-neutral-300 font-medium">Same as QSR Menu + Entertainment Zone</span>
+              <span className="text-white font-medium">Same as QSR Menu + Entertainment Zone</span>
             </p>
             <p className="text-white font-bold">Entertainment Zone:</p>
             <BulletList items={["Snooker", "8 Ball Pool", "PlayStation 5 Gaming Zone", "& many more..."]} />
@@ -274,7 +319,7 @@ export default function PartnerPage() {
 
         {/* Block 3 — Signature Store (image left) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="rounded-[24px] border-[3px] border-[#F2D93B] overflow-hidden shadow-2xl">
+          <div className="rounded-[24px] border-[3px] border-[#FCEE57] overflow-hidden shadow-2xl">
             <ImagePlaceholder
               label="Signature store dine-in seating area"
               aspectRatio="aspect-[4/3]"
@@ -283,10 +328,10 @@ export default function PartnerPage() {
             />
           </div>
           <div className="space-y-4">
-            <h3 className="text-2xl sm:text-3xl font-black text-[#F2D93B] font-serif">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#FCEE57] font-serif">
               Signature Store
             </h3>
-            <p className="text-neutral-300 leading-[1.6] font-medium">
+            <p className="text-white leading-[1.6] font-medium">
               Best suited for family-friendly areas and city centers where customers prefer a
               complete dining experience.
             </p>
@@ -301,19 +346,19 @@ export default function PartnerPage() {
       </Reveal>
 
       {/* 5. WHY PARTNER */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#5a5a5a] to-[#494949] py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#000000] to-[#000000] py-20">
         {/* Diagonal yellow swoosh from bottom-right */}
         <div
           aria-hidden
-          className="absolute -bottom-6 -right-2 w-[520px] h-19 bg-[#F2D93B]/25 rounded-full rotate-[-30deg] pointer-events-none"
+          className="absolute -bottom-6 -right-2 w-[520px] h-19 bg-[#FCEE57]/25 rounded-full rotate-[-30deg] pointer-events-none"
         />
         <div
           aria-hidden
-          className="absolute -bottom-20 -right-12 w-[220px] h-32 bg-[#F2D93B]/25 rounded-full rotate-[-30deg] pointer-events-none"
+          className="absolute -bottom-20 -right-12 w-[220px] h-32 bg-[#FCEE57]/25 rounded-full rotate-[-30deg] pointer-events-none"
         />
 
         <Reveal className="relative max-w-[900px] mx-auto px-4 sm:px-10 lg:px-8 space-y-5">
-          <h2 className="text-[#F2D93B] font-black uppercase tracking-widest text-sm sm:text-base">
+          <h2 className="text-[#FCEE57] font-black uppercase tracking-widest text-sm sm:text-base">
             Pohewala : The Renowned QS Restaurant
           </h2>
           <p className="text-white/90 leading-[1.6] font-medium">
@@ -324,10 +369,10 @@ export default function PartnerPage() {
             delicacies.
           </p>
 
-          <h3 className="pt-4 text-2xl sm:text-3xl font-black text-[#F2D93B] font-serif">
+          <h3 className="pt-4 text-2xl sm:text-3xl font-black text-[#FCEE57] font-serif">
             Why Partner with Pohewala?
           </h3>
-          <ul className="list-disc pl-5 marker:text-[#F2D93B]/70 space-y-2.5 leading-[1.6]">
+          <ul className="list-disc pl-5 marker:text-[#FCEE57]/70 space-y-2.5 leading-[1.6]">
             {[
               ["Trusted Brand", "Known for authentic taste & quality."],
               ["Proven Business Model", "High returns with affordable investment."],
@@ -341,7 +386,7 @@ export default function PartnerPage() {
             ))}
           </ul>
 
-          <h3 className="pt-4 text-2xl sm:text-3xl font-black text-[#F2D93B] font-serif">
+          <h3 className="pt-4 text-2xl sm:text-3xl font-black text-[#FCEE57] font-serif">
             Investment &amp; Returns
           </h3>
           <BulletList

@@ -31,14 +31,14 @@ export const LeadersSection: React.FC = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
-      className="w-full bg-[#4A4A4A]"
+      className="w-full bg-[#000000]"
     >
       <div className="flex flex-col md:flex-row items-stretch shadow-2xl overflow-visible">
         <motion.div
           variants={fromLeft}
-          className="bg-[#E6DA34] text-neutral-950 font-black select-none flex items-center justify-center md:w-20 md:self-center md:h-[500px] py-5 md:py-0 md:rounded-r-[40px]"
+          className="bg-[#FCEE57] text-black font-black select-none flex items-center justify-center md:w-20 md:self-center md:h-[500px] py-5 md:py-0 md:rounded-r-[40px]"
         >
-          <span className="md:rotate-180 md:[writing-mode:vertical-rl] text-2xl tracking-[0.5em]">
+          <span className="font-serif md:rotate-180 md:[writing-mode:vertical-rl] text-2xl tracking-[0.5em]">
             LEADERS
           </span>
         </motion.div>
@@ -58,7 +58,7 @@ export const LeadersSection: React.FC = () => {
         </motion.div>
         <motion.div
           variants={fromRight}
-          className="bg-[#E6DA34] flex-1 md:self-center md:h-[500px] md:-ml-46 md:rounded-l-[40px] text-neutral-950 p-8 sm:p-10 space-y-4 md:pl-56 md:pr-36 flex flex-col justify-center"
+          className="bg-[#FCEE57] flex-1 md:self-center md:h-[500px] md:-ml-46 md:rounded-l-[40px] text-black p-8 sm:p-10 space-y-4 md:pl-56 md:pr-36 flex flex-col justify-center"
         >
           <p className="leading-relaxed font-medium text-sm sm:text-base">
             In a city like Nagpur, where mornings start with the aroma of tarri poha, two young minds decided to turn this everyday dish into something extraordinary.
@@ -72,7 +72,7 @@ export const LeadersSection: React.FC = () => {
           <p className="leading-relaxed font-medium text-sm sm:text-base">
             Because this wasn&apos;t just about food.
           </p>
-          <p className="leading-relaxed font-medium text-sm sm:text-base italic">
+          <p className="tagline leading-relaxed text-base">
             It was about comfort, culture, and connection.
           </p>
         </motion.div>

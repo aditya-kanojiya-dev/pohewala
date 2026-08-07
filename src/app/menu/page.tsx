@@ -85,19 +85,19 @@ export default function MenuPage() {
         {/* 1. HERO */}
         <section className="text-center space-y-5 max-w-4xl mx-auto px-4 pt-6 sm:pt-10">
           <Reveal>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#E6DA34] tracking-tight font-serif">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#FCEE57] tracking-tight font-serif">
               Our Menu
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
             <div className="flex items-center justify-center gap-2">
-              <span className="block w-16 h-[2px] bg-[#E6DA34]/40 rounded-full" />
-              <span className="block w-2 h-2 bg-[#E6DA34] rounded-full" />
-              <span className="block w-16 h-[2px] bg-[#E6DA34]/40 rounded-full" />
+              <span className="block w-16 h-[2px] bg-[#FCEE57]/40 rounded-full" />
+              <span className="block w-2 h-2 bg-[#FCEE57] rounded-full" />
+              <span className="block w-16 h-[2px] bg-[#FCEE57]/40 rounded-full" />
             </div>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="text-neutral-200 text-sm sm:text-base leading-relaxed font-medium max-w-2xl mx-auto">
+            <p className="text-white text-sm sm:text-base leading-relaxed font-medium max-w-2xl mx-auto">
               Freshly made Poha, rich in flavor and tradition. Satisfy your cravings anytime with Pohewala!
             </p>
           </Reveal>
@@ -115,14 +115,14 @@ export default function MenuPage() {
                   aria-pressed={isActive}
                   className={`cursor-pointer px-5 py-2.5 rounded-full text-sm font-bold border transition-all duration-200 ${
                     isActive
-                      ? "bg-[#E6DA34] border-[#E6DA34] text-neutral-950 shadow-lg scale-105"
-                      : "bg-white/5 border-neutral-600 text-neutral-300 hover:bg-white/10 hover:border-[#E6DA34]/60"
+                      ? "bg-[#FCEE57] border-[#FCEE57] text-black shadow-lg scale-105"
+                      : "bg-white/5 border-[#666666] text-white hover:bg-white/10 hover:border-[#FCEE57]/60"
                   }`}
                 >
                   {t.label}
                   <span
                     className={`ml-1.5 text-xs font-semibold ${
-                      isActive ? "text-neutral-800" : "text-neutral-500"
+                      isActive ? "text-[#666666]" : "text-[#BCBCBC]"
                     }`}
                   >
                     {count(t.key)}
@@ -148,15 +148,15 @@ export default function MenuPage() {
                 <div key={cat.key} className="space-y-6">
                   <motion.div
                     variants={item}
-                    className="flex items-center gap-3 border-b-2 border-[#E6DA34] pb-2"
+                    className="flex items-center gap-3 border-b-2 border-[#FCEE57] pb-2"
                   >
-                    <span className="w-10 h-10 rounded-full bg-[#E6DA34]/15 border border-[#E6DA34]/40 flex items-center justify-center shrink-0">
-                      <cat.icon className="w-5 h-5 text-[#E6DA34]" />
+                    <span className="w-10 h-10 rounded-full bg-[#FCEE57]/15 border border-[#FCEE57]/40 flex items-center justify-center shrink-0">
+                      <cat.icon className="w-5 h-5 text-[#FCEE57]" />
                     </span>
                     <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-serif">
                       {cat.title}
                     </h2>
-                    <span className="hidden sm:inline-flex text-xs font-bold text-neutral-500">
+                    <span className="hidden sm:inline-flex text-xs font-bold text-[#BCBCBC]">
                       {cat.items.length} items
                     </span>
                   </motion.div>
@@ -166,26 +166,26 @@ export default function MenuPage() {
                       <motion.div
                         key={mi.name}
                         variants={item}
-                        className="group bg-neutral-800/80 rounded-2xl p-5 border border-neutral-700 hover:border-[#E6DA34] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 cursor-pointer"
+                        className="group bg-black/80 rounded-2xl p-5 border border-[#666666] hover:border-[#FCEE57] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 cursor-pointer"
                       >
                         <div className="flex items-baseline gap-2">
                           <h3 className="font-bold text-white text-lg font-serif leading-snug shrink-0">
                             {mi.name}
                           </h3>
                           {mi.tag && (
-                            <span className="shrink-0 inline-flex items-center gap-1 text-[10px] font-black text-[#E6DA34] uppercase tracking-wider border border-[#E6DA34]/40 rounded-full px-2 py-0.5 -translate-y-0.5">
+                            <span className="shrink-0 inline-flex items-center gap-1 text-[10px] font-black text-[#FCEE57] uppercase tracking-wider border border-[#FCEE57]/40 rounded-full px-2 py-0.5 -translate-y-0.5">
                               <Flame className="w-3 h-3" /> {mi.tag}
                             </span>
                           )}
                           <span
                             aria-hidden
-                            className="flex-1 border-b border-dotted border-neutral-500 group-hover:border-[#E6DA34]/70 transition-colors duration-300"
+                            className="flex-1 border-b border-dotted border-[#666666] group-hover:border-[#FCEE57]/70 transition-colors duration-300"
                           />
-                          <span className="shrink-0 font-black text-[#E6DA34] text-base">
+                          <span className="shrink-0 font-black text-[#FCEE57] text-base">
                             {mi.price}
                           </span>
                         </div>
-                        <p className="text-sm text-neutral-400 leading-relaxed mt-2 max-w-[90%]">
+                        <p className="text-sm text-[#BCBCBC] leading-relaxed mt-2 max-w-[90%]">
                           {mi.desc}
                         </p>
                       </motion.div>

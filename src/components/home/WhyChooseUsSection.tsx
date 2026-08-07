@@ -57,13 +57,13 @@ export const WhyChooseUsSection: React.FC = () => {
         >
           <h2
             className="font-serif font-bold text-[32px] sm:text-[40px] lg:text-[56px] leading-[1.1] text-white"
-            style={{ textShadow: "0 15.7px 16px rgba(255,174,0,.01), 0 30px 92px rgba(255,174,0,.28)" }}
+            style={{ textShadow: "0 15.7px 16px rgba(252,238,87,.01), 0 30px 92px rgba(252,238,87,.28)" }}
           >
             Why Choose Us
           </h2>
           <p
             className="font-serif font-bold text-[16px] sm:text-[18px] lg:text-[24px] text-[#FCEE57] mx-auto mt-4 sm:mt-6"
-            style={{ maxWidth: "900px", textShadow: "0 15.7px 16px rgba(255,174,0,.01), 0 30px 92px rgba(255,174,0,.28)" }}
+            style={{ maxWidth: "900px", textShadow: "0 15.7px 16px rgba(252,238,87,.01), 0 30px 92px rgba(252,238,87,.28)" }}
           >
             We are here to deliver quality you can trust.
             <br />
@@ -102,7 +102,7 @@ export const WhyChooseUsSection: React.FC = () => {
                       style={{
                         width: "120px",
                         height: "120px",
-                        border: "8px solid #FFE54C",
+                        border: "8px solid #FCEE57",
                         boxShadow: "0 10px 25px rgba(0,0,0,.2)",
                       }}
                     >
@@ -127,30 +127,30 @@ export const WhyChooseUsSection: React.FC = () => {
                       boxShadow: "0 18px 35px rgba(0,0,0,.18), 0 6px 15px rgba(0,0,0,.08)",
                     }}
                   >
-                    <h3 className="font-sans font-semibold text-[18px] leading-[1.3] text-[#1E1E1E]">
+                    <h3 className="font-sans font-semibold text-[18px] leading-[1.3] text-[#000000]">
                       {c.title}
                     </h3>
-                    <p className="font-sans font-medium text-[14px] leading-[1.6] text-[#555] mt-2">
+                    <p className="font-sans font-medium text-[14px] leading-[1.6] text-[#666666] mt-2">
                       {c.desc}
                     </p>
 
                     {/* Decorative dots */}
                     <div className="flex items-center justify-center gap-1.5 mt-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FFE54C]" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FFE54C]" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#FFE54C]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FCEE57]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FCEE57]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FCEE57]" />
                     </div>
                   </div>
 
                   {/* CTA Button */}
                   <div className="relative z-10 flex justify-center" style={{ marginTop: "-22px" }}>
                     <button
-                      className="font-serif font-bold text-[16px] text-[#111111] bg-[#FFE54C] flex items-center justify-center cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03]"
+                      className="font-serif font-bold text-[16px] text-[#000000] bg-[#FCEE57] flex items-center justify-center cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03]"
                       style={{
                         width: "180px",
                         height: "44px",
                         borderRadius: "999px",
-                        boxShadow: "0 8px 20px rgba(255,229,76,.35), 0 4px 12px rgba(0,0,0,.1)",
+                        boxShadow: "0 8px 20px rgba(252,238,87,.35), 0 4px 12px rgba(0,0,0,.1)",
                       }}
                     >
                       {c.title}

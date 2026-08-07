@@ -3,14 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Playfair_Display } from "next/font/google";
 import { Phone } from "lucide-react";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -39,7 +32,7 @@ export const CTASection: React.FC = () => {
         viewport={{ once: true, margin: "-60px" }}
         className="mx-auto max-w-7xl px-4 sm:px-6 relative"
       >
-        <div className="relative bg-[#FFF25A] w-full rounded-3xl md:rounded-[48px] shadow-[0_20px_60px_rgba(0,0,0,.15)] hover:shadow-[0_25px_70px_rgba(0,0,0,.2)] transition-shadow duration-500 flex flex-col lg:flex-row items-center lg:h-[320px] lg:pl-[380px] px-6 lg:px-0 py-8 md:py-10 lg:py-0">
+        <div className="relative bg-[#FCEE57] w-full rounded-3xl md:rounded-[48px] shadow-[0_20px_60px_rgba(0,0,0,.15)] hover:shadow-[0_25px_70px_rgba(0,0,0,.2)] transition-shadow duration-500 flex flex-col lg:flex-row items-center lg:h-[360px] lg:pl-[380px] px-6 lg:px-0 py-8 md:py-10 lg:py-0">
           <motion.div
             variants={itemVariants}
             className="relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-0 flex justify-center w-full lg:w-auto -mt-4 md:-mt-6 lg:mt-0"
@@ -59,21 +52,21 @@ export const CTASection: React.FC = () => {
             <motion.div variants={itemVariants}>
               <a
                 href="/contact"
-                className={`${playfair.className} inline-block font-bold text-[18px] sm:text-[20px] lg:text-[22px] text-black bg-white rounded-full px-6 sm:px-8 py-2.5 sm:py-3 mb-4 sm:mb-5 lg:mb-8 shadow-[0_4px_12px_rgba(0,0,0,.06)] hover:scale-105 active:scale-95 transition-transform duration-200`}
+                className="font-inter inline-block font-bold text-[18px] sm:text-[20px] lg:text-[22px] text-black bg-white rounded-full px-6 sm:px-8 py-2.5 sm:py-3 mb-4 sm:mb-5 lg:mb-8 shadow-[0_4px_12px_rgba(0,0,0,.06)] hover:bg-black hover:text-white hover:scale-105 active:scale-95 transition-all duration-200"
               >
                 Enquire Now
               </a>
             </motion.div>
             <motion.h2
               variants={itemVariants}
-              className={`${playfair.className} font-bold text-[26px] sm:text-[30px] md:text-[34px] lg:text-[36px] xl:text-[40px] text-[#111111] leading-[1.15] max-w-[600px] text-center lg:text-left`}
+              className="font-serif font-bold text-[26px] sm:text-[30px] md:text-[34px] lg:text-[36px] xl:text-[40px] text-[#000000] leading-[1.15] max-w-[600px] text-center lg:text-left"
             >
               Serve India&apos;s Favorite Breakfast,
               Own Your Success!
             </motion.h2>
             <motion.p
               variants={itemVariants}
-              className="font-sans font-normal text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px] text-[#2D2D2D] leading-[1.6] md:leading-[1.7] max-w-[560px] lg:max-w-[660px] mt-3 sm:mt-4 lg:mt-5 text-center lg:text-left"
+              className="font-sans font-normal text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px] text-[#666666] leading-[1.6] md:leading-[1.7] max-w-[560px] lg:max-w-[660px] mt-3 sm:mt-4 lg:mt-5 text-center lg:text-left"
             >
               Join India&apos;s fastest-growing breakfast brand and turn every
               morning into a profitable business with our low-investment,

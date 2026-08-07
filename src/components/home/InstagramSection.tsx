@@ -1,16 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Playfair_Display } from "next/font/google";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { InstagramCard } from "./instagram/InstagramCard";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["700"],
-  display: "swap",
-});
 
 const instagramPosts = [
   { id: 1, image: "/images/gallery1.jpg", alt: "Poha bowl on table" },
@@ -51,21 +44,21 @@ export const InstagramSection: React.FC = () => {
   const prev = () => setPage((p) => (p - 1 < 0 ? totalPages - 1 : p - 1));
 
   return (
-    <section className="relative w-full bg-[#FFF25A] py-[60px] sm:py-[90px] overflow-hidden">
+    <section className="relative w-full bg-[#FCEE57] py-[60px] sm:py-[90px] overflow-hidden">
 
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-center gap-3 mb-4">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/60">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black/60">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
           </svg>
-          <span className="text-white/60 text-[13px] font-semibold uppercase tracking-[.2em]">
+          <span className="text-black/60 text-[13px] font-semibold uppercase tracking-[.2em]">
             @pohewala_india
           </span>
         </div>
         <h1
-          className={`${playfair.className} font-bold text-[28px] sm:text-[36px] md:text-[44px] lg:text-[56px] text-white text-center mb-8 sm:mb-10 lg:mb-[60px] tracking-tight`}
+          className="font-serif font-bold text-[28px] sm:text-[36px] md:text-[44px] lg:text-[56px] text-black text-center mb-8 sm:mb-10 lg:mb-[60px] tracking-tight"
         >
           Visit Our Instagram
         </h1>
@@ -102,8 +95,8 @@ export const InstagramSection: React.FC = () => {
                 onClick={() => setPage(i)}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                   i === page
-                    ? "bg-white w-6"
-                    : "bg-white/40 hover:bg-white/60"
+                    ? "bg-black w-6"
+                    : "bg-black/40 hover:bg-black/60"
                 }`}
                 aria-label={`Go to page ${i + 1}`}
               />
