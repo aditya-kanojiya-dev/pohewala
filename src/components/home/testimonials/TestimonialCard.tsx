@@ -16,7 +16,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
   message,
 }) => {
   return (
-    <div className="group w-[340px] h-[250px] bg-white rounded-[32px] p-7 shadow-[0_4px_20px_rgba(0,0,0,.08)] hover:shadow-[0_12px_40px_rgba(0,0,0,.15)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+    <div className="group w-full max-w-[340px] h-[250px] bg-white rounded-[32px] p-7 shadow-[0_4px_20px_rgba(0,0,0,.08)] hover:shadow-[0_12px_40px_rgba(0,0,0,.15)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
       <div className="absolute top-3 right-4 text-[#FCEE57]/20">
         <Quote size={32} />
       </div>

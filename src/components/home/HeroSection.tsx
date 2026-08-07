@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -112,6 +112,10 @@ const MiniBowl: React.FC<MiniBowlProps> = ({
 
 export const HeroSection: React.FC = () => {
   const [activeMini, setActiveMini] = useState(2);
+  const desktopRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const [desktopScale, setDesktopScale] = useState(1);
+  const [mobileScale, setMobileScale] = useState(1);
 
   const next = useCallback(() => {
     setActiveMini((i) => (i + 1) % VARIANTS.length);
@@ -122,15 +126,32 @@ export const HeroSection: React.FC = () => {
     return () => clearInterval(timer);
   }, [next]);
 
+  useEffect(() => {
+    const update = () => {
+      if (desktopRef.current) {
+        const w = desktopRef.current.clientWidth;
+        setDesktopScale(Math.min(1, Math.max(0.6, (w - 806) / 636)));
+      }
+      if (mobileRef.current) {
+        setMobileScale(Math.min(1, mobileRef.current.clientWidth / 380));
+      }
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    if (desktopRef.current) ro.observe(desktopRef.current);
+    if (mobileRef.current) ro.observe(mobileRef.current);
+    return () => ro.disconnect();
+  }, []);
+
   return (
     <section className="relative w-full bg-[#FCEE57] overflow-visible">
-      <div className="relative mx-auto flex flex-col lg:flex-row max-w-[1440px] min-h-[600px] lg:min-h-0 lg:h-[453px]">
+      <div className="relative mx-auto flex flex-col xl:flex-row max-w-[1440px] min-h-[600px] xl:min-h-0 xl:h-[453px]">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative z-10 w-full lg:w-[45%] flex flex-col justify-center px-4 sm:px-10 lg:pl-[60px] pt-8 lg:pt-0 pb-6 lg:pb-0"
+          className="relative z-10 w-full xl:w-[45%] flex flex-col justify-center px-4 sm:px-10 xl:pl-[60px] pt-8 xl:pt-0 pb-6 xl:pb-0"
         >
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -176,7 +197,17 @@ export const HeroSection: React.FC = () => {
         </motion.div>
 
         {/* Right Composition - Desktop */}
-        <div className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none">
+        <div
+          ref={desktopRef}
+          className="hidden xl:block absolute inset-0 w-full h-full pointer-events-none"
+        >
+          <div
+            className="absolute left-0 top-0 w-full h-full"
+            style={{
+              transform: `scale(${desktopScale})`,
+              transformOrigin: "806px 267px",
+            }}
+          >
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
@@ -265,11 +296,25 @@ export const HeroSection: React.FC = () => {
               />
             );
           })}
+          </div>
         </div>
 
         {/* Right Composition - Mobile (mirrors desktop, stacked below) */}
-        <div className="block lg:hidden relative w-full px-4 pb-8 overflow-visible">
-          <div className="relative mx-auto" style={{ width: "380px", maxWidth: "100%", height: "400px" }}>
+        <div className="block xl:hidden relative w-full px-4 pb-8 overflow-visible">
+          <div
+            ref={mobileRef}
+            className="relative mx-auto"
+            style={{ width: "380px", maxWidth: "100%", height: `${400 * mobileScale}px` }}
+          >
+            <div
+              className="absolute left-0 top-0"
+              style={{
+                width: "380px",
+                height: "400px",
+                transform: `scale(${mobileScale})`,
+                transformOrigin: "left top",
+              }}
+            >
             {/* Rotating dashed circle */}
             <div
               className="absolute"
@@ -360,6 +405,7 @@ export const HeroSection: React.FC = () => {
                 />
               );
             })}
+            </div>
           </div>
         </div>
       </div>

@@ -100,7 +100,7 @@ export const FindPohewalaSection: React.FC = () => {
 
       {/* Left leaf */}
       <div
-        className="absolute z-5 pointer-events-none visible md:block"
+        className="absolute z-5 pointer-events-none hidden md:block"
         style={{
           width: "clamp(100px, 12vw, 175px)", height: "auto", left: 0, top: "-160px",
           transform: "translate(-35%, 0) rotate(-18deg)",
@@ -113,7 +113,7 @@ export const FindPohewalaSection: React.FC = () => {
 
       {/* Right leaf */}
       <div
-        className="absolute z-5 pointer-events-none visible md:block"
+        className="absolute z-5 pointer-events-none hidden md:block"
         style={{
           width: "clamp(100px, 12vw, 175px)", height: "auto", right: 0, top: "-160px",
           transform: "translate(35%, 0) rotate(18deg)",
