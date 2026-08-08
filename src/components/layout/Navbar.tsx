@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-pohe-gradient border-2 border-[#000000] [background-image:radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(115deg,transparent_42%,rgba(255,255,255,0.07)_50%,transparent_58%)] [background-size:18px_18px,100%_100%]">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-28 flex items-center justify-between">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-28 flex items-center justify-between">
         
         {/* Brand Logo */}
         <Link href="/" className="flex items-center group">
@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
               width={370}
               height={103}
               priority
-              className="w-[185px] h-[51.5px] object-contain"
+              className="w-[140px] sm:w-[185px] h-auto object-contain"
             />
           </div>
         </Link>

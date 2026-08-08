@@ -63,10 +63,14 @@
   --font-sans: var(--font-body);
 }
 
-body {
+html, body {
   font-family: var(--font-body);
   color: var(--color-black);
   background-color: var(--color-white);
+  overflow-x: hidden;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
