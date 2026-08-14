@@ -1,4 +1,5 @@
 import { createLead, validateLead } from "@/lib/leads";
+import { notifyWhatsApp } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -17,6 +18,10 @@ export async function POST(request: Request) {
 
   try {
     const lead = await createLead(result);
+    // ponytail: notify after save, never block or fail the response on it.
+    notifyWhatsApp(result).catch((err) =>
+      console.error("WhatsApp notify threw:", err)
+    );
     return Response.json({ ok: true, id: lead.id }, { status: 201 });
   } catch (err) {
     console.error("Failed to save lead:", err);
