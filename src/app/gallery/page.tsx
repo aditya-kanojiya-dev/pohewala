@@ -175,13 +175,14 @@ export default function GalleryPage() {
 
       {/* Masonry Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-5">
-          <AnimatePresence mode="popLayout">
-            {items.map((item) => (
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
+          {items.map((item, index) => {
+            const isAboveFold = index < 6;
+            return (
               <motion.button
                 key={item.image}
                 layout
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={isAboveFold ? false : { opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.25 }}
@@ -195,6 +196,8 @@ export default function GalleryPage() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={isAboveFold}
+                    loading={isAboveFold ? undefined : "lazy"}
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
 
@@ -219,9 +222,9 @@ export default function GalleryPage() {
                   </div>
                 </div>
               </motion.button>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+            );
+          })}
+        </div>
       </section>
 
       {/* Lightbox */}
