@@ -119,7 +119,7 @@ export default function PartnerPage() {
                   <ImagePlaceholder
                     label="Pohewala storefront at night"
                     aspectRatio="aspect-video lg:aspect-auto"
-                    imageSrc="/images/store.jpg"
+                    imageSrc="/images/store1.jpg"
                     className="w-full h-full"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition" />
@@ -323,7 +323,7 @@ export default function PartnerPage() {
             <ImagePlaceholder
               label="Signature store dine-in seating area"
               aspectRatio="aspect-[4/3]"
-              imageSrc="/images/store.jpg"
+              imageSrc="/images/store1.jpg"
               className="w-full"
             />
           </div>

@@ -7,7 +7,7 @@ import { CTASection } from "@/components/cta/CTASection";
 import { Reveal } from "@/components/shared/Reveal";
 import { X, ZoomIn } from "lucide-react";
 
-type Category = "food" | "store" | "person";
+type Category = "food" | "drink" | "dessert";
 
 interface GalleryItem {
   title: string;
@@ -17,112 +17,102 @@ interface GalleryItem {
   aspect: string;
 }
 
+const aspectRatios = [
+  "aspect-[3/4]",
+  "aspect-[4/5]",
+  "aspect-[16/9]",
+  "aspect-[3/2]",
+  "aspect-[4/3]",
+] as const;
+
+const foodImages = [
+  "Ban maska.png",
+  "bhurji pav.png",
+  "bowl in cheese french freis.png",
+  "Channa poha with tray.png",
+  "chees french fries 3.png",
+  "Cheese ball nugets.png",
+  "cheese corn maggie png.png",
+  "cheese maggie.png",
+  "cheese magiee 3.png",
+  "cheese vada pav.png",
+  "cheesy fries.png",
+  "chilli maggie.png",
+  "corn maggie.png",
+  "French fries with cheese.png",
+  "fries.png",
+  "frozen poha _.png",
+  "frozen poha edit 2.png",
+  "frozen sabudana.png",
+  "masala fries.png",
+  "Masala Maggi.png",
+  "methi paratha.png",
+  "misal pav.png",
+  "paner biryani.png",
+  "panneer maggie png.png",
+  "panner biryanni.png",
+  "paratha _.jpg",
+  "paratha png.png",
+];
+
+const drinkImages = [
+  "Brownvita.png",
+  "choclate coffee png.png",
+  "coffee.png",
+  "cold coffee with ice cream.png",
+  "cold coffee.png",
+  "creamy cold coffee png.png",
+  "ginger tea png.png",
+  "green tea frozenedit 2.png",
+  "haldi milk png.png",
+  "haldi milk.png",
+  "hot coffee png.png",
+  "hot coffee.png",
+  "Lassi 2.png",
+  "lassi png.png",
+  "oreo shake.png",
+];
+
+const dessertImages = [
+  "Aamras.png",
+  "brown brownie.png",
+  "Brownie.png",
+  "browniee.png",
+  "chocolava cake 2.png",
+  "chocolava cake png.png",
+  "chocolava cake.png",
+  "choclate splash.png",
+];
+
+const formatTitle = (filename: string) =>
+  filename
+    .replace(/\.[^.]+$/, "")
+    .replace(/[_-]/g, " ")
+    .replace(/\bpng\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+const createGalleryItems = (filenames: string[], type: Category, tag: string) =>
+  filenames.map((filename, index) => ({
+    title: formatTitle(filename),
+    tag,
+    type,
+    image: `/gallary/${filename}`,
+    aspect: aspectRatios[index % aspectRatios.length],
+  }));
+
 const galleryItems: GalleryItem[] = [
-  {
-    title: "Nagpuri Tarri Poha Platter",
-    tag: "Signature Dish",
-    type: "food",
-    image: "/images/gallary/pic-1.png",
-    aspect: "aspect-[3/4]",
-  },
-  {
-    title: "Nagpur Store Front",
-    tag: "Outlet",
-    type: "store",
-    image: "/images/gallary/pic-2.png",
-    aspect: "aspect-[4/5]",
-  },
-  {
-    title: "Poha Preparation Counter",
-    tag: "Kitchen",
-    type: "food",
-    image: "/images/gallary/pic-3.png",
-    aspect: "aspect-[16/9]",
-  },
-  {
-    title: "Founders Launch Ceremony",
-    tag: "Event",
-    type: "person",
-    image: "/images/gallary/pic-4.png",
-    aspect: "aspect-[5/2]",
-  },
-  {
-    title: "Pune Franchise Store",
-    tag: "Outlet",
-    type: "store",
-    image: "/images/gallary/pic-5.png",
-    aspect: "aspect-[3/2]",
-  },
-  {
-    title: "Indori Sev Poha Special",
-    tag: "Dish",
-    type: "food",
-    image: "/images/gallary/pic-6.png",
-    aspect: "aspect-[3/2]",
-  },
-  {
-    title: "Happy Customers",
-    tag: "Community",
-    type: "person",
-    image: "/images/gallary/pic-7.png",
-    aspect: "aspect-[4/5]",
-  },
-  {
-    title: "Bengaluru Regional Office",
-    tag: "Office",
-    type: "store",
-    image: "/images/outlets.png",
-    aspect: "aspect-[3/2]",
-  },
-  {
-    title: "Fresh Ingredients",
-    tag: "Quality",
-    type: "food",
-    image: "/images/ingredients.png",
-    aspect: "aspect-[3/2]",
-  },
-  {
-    title: "Kulhad Chai Moments",
-    tag: "Culture",
-    type: "person",
-    image: "/images/Blogs/blog-poster.png",
-    aspect: "aspect-[4/3]",
-  },
-  {
-    title: "Tarri Poha Special",
-    tag: "Food Post",
-    type: "food",
-    image: "/images/Posts/post1.png",
-    aspect: "aspect-[3/4]",
-  },
-  {
-    title: "Fan Favorites",
-    tag: "Food Post",
-    type: "food",
-    image: "/images/Posts/post2.png",
-    aspect: "aspect-[3/4]",
-  },
-  {
-    title: "Snacks & Chai Combo",
-    tag: "Food Post",
-    type: "food",
-    image: "/images/Posts/post3.png",
-    aspect: "aspect-[3/4]",
-  },
-  {
-    title: "Street Style Poha",
-    tag: "Food Post",
-    type: "food",
-    image: "/images/Posts/post4.png",
-    aspect: "aspect-[3/4]",
-  },
+  ...createGalleryItems(foodImages, "food", "Food"),
+  ...createGalleryItems(drinkImages, "drink", "Beverage"),
+  ...createGalleryItems(dessertImages, "dessert", "Dessert"),
 ];
 
 const filters: Array<{ key: Category | "all"; label: string }> = [
   { key: "all", label: "All" },
   { key: "food", label: "Food" },
-  { key: "store", label: "Outlets" },
-  { key: "person", label: "People" },
+  { key: "drink", label: "Beverages" },
+  { key: "dessert", label: "Desserts" },
 ];
 
 export default function GalleryPage() {
@@ -189,7 +179,7 @@ export default function GalleryPage() {
           <AnimatePresence mode="popLayout">
             {items.map((item) => (
               <motion.button
-                key={item.title}
+                key={item.image}
                 layout
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}

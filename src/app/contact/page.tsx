@@ -126,14 +126,23 @@ export default function ContactPage() {
     setNearest(origin ? { store, distanceKm, origin } : null);
   };
 
+  const lastSearchRef = useRef(0);
+
   const handleLocate = async () => {
     const q = query.trim();
     if (!q || searching) return;
+    const now = Date.now();
+    if (now - lastSearchRef.current < 1500) {
+      setErrorMsg("Please wait a moment before searching again.");
+      return;
+    }
+    lastSearchRef.current = now;
     setSearching("address");
     setErrorMsg("");
     try {
       const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q)}`
+        `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q)}`,
+        { headers: { "User-Agent": "PohewalaStoreLocator/1.0" } }
       );
       const data = await res.json();
       if (!res.ok || !data.length) throw new Error("not found");

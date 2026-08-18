@@ -158,14 +158,14 @@ export default function PrivacyPage() {
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:chahulcreations@gmail.com"
+                  href="mailto:Pohewalacare@gmail.com"
                   className="text-[#FCEE57] underline font-medium hover:text-white transition"
                 >
-                  chahulcreations@gmail.com
+                  Pohewalacare@gmail.com
                 </a>
               </p>
-              <p>Phone: +91 9923000480</p>
-              <p>Address: Ghole bhavan, bus stop road, Medical square Nagpur</p>
+              <p>Phone: +91-9923000480</p>
+              <p>Address: 4th Floor, Guruprasad Apartment, Taj Nagar, near Tukdogi Putla Square, Nagpur-440027, Maharashtra.</p>
             </div>
           </Section>
         </div>

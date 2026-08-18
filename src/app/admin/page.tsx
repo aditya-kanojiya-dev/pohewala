@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
+import Link from "next/link";
 import { SESSION_COOKIE, verifySession } from "@/lib/auth";
-import { listLeads } from "@/lib/leads";
+import { listLeads, countLeads } from "@/lib/leads";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -11,12 +12,14 @@ const typeLabel: Record<string, string> = {
   enquiry: "Enquiry",
 };
 
+const PAGE_SIZE = 25;
+
 export default async function AdminPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; page?: string }>;
 }) {
-  const { error } = await searchParams;
+  const { error, page: pageParam } = await searchParams;
   const cookieStore = await cookies();
   const authed = verifySession(cookieStore.get(SESSION_COOKIE)?.value);
 
@@ -64,7 +67,10 @@ export default async function AdminPage({
     );
   }
 
-  const leads = await listLeads();
+  const currentPage = Math.max(1, parseInt(pageParam ?? "1", 10) || 1);
+  const offset = (currentPage - 1) * PAGE_SIZE;
+  const [leads, total] = await Promise.all([listLeads(PAGE_SIZE, offset), countLeads()]);
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -74,7 +80,7 @@ export default async function AdminPage({
             Enquiries
           </h1>
           <p className="text-sm text-white mt-1">
-            {leads.length} submission{leads.length === 1 ? "" : "s"} received
+            {total} submission{total === 1 ? "" : "s"} received
           </p>
         </div>
         <form action="/api/admin/logout" method="post">
@@ -87,57 +93,91 @@ export default async function AdminPage({
         </form>
       </div>
 
-      {leads.length === 0 ? (
+      {total === 0 ? (
         <div className="bg-black rounded-3xl border-[3px] border-[#FCEE57]/40 p-12 text-center">
           <p className="text-white font-medium">
             No enquiries yet. They will appear here once someone submits a form.
           </p>
         </div>
       ) : (
-        <div className="bg-black rounded-3xl border-[3px] border-[#FCEE57]/40 overflow-x-auto shadow-2xl">
-          <table className="w-full text-left text-sm">
-            <thead>
-              <tr className="border-b border-[#666666] text-white">
-                <th className="px-5 py-4 font-bold">Type</th>
-                <th className="px-5 py-4 font-bold">Name</th>
-                <th className="px-5 py-4 font-bold">Contact</th>
-                <th className="px-5 py-4 font-bold">City / Subject</th>
-                <th className="px-5 py-4 font-bold">Message</th>
-                <th className="px-5 py-4 font-bold">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leads.map((lead) => (
-                <tr key={lead.id} className="border-b border-[#666666]/40 align-top">
-                  <td className="px-5 py-4">
-                    <span className="bg-[#FCEE57] text-black text-xs font-bold px-2.5 py-1 rounded-full">
-                      {typeLabel[lead.type] ?? lead.type}
-                    </span>
-                  </td>
-                  <td className="px-5 py-4 text-white font-medium">{lead.name}</td>
-                  <td className="px-5 py-4 text-[#BCBCBC]">
-                    <a href={`mailto:${lead.email}`} className="hover:text-[#FCEE57] underline break-all">
-                      {lead.email}
-                    </a>
-                    <br />
-                    <a href={`tel:${lead.phone}`} className="hover:text-[#FCEE57] underline whitespace-nowrap">
-                      {lead.phone}
-                    </a>
-                    {lead.extra && <div className="text-white mt-1">{lead.extra}</div>}
-                  </td>
-                  <td className="px-5 py-4 text-white">
-                    {lead.city && <div>{lead.city}</div>}
-                    {lead.subject && <div className="text-[#BCBCBC]">{lead.subject}</div>}
-                  </td>
-                  <td className="px-5 py-4 text-[#BCBCBC] max-w-[280px]">{lead.message}</td>
-                  <td className="px-5 py-4 text-[#BCBCBC] whitespace-nowrap">
-                    {new Date(lead.created_at).toLocaleString("en-IN")}
-                  </td>
+        <>
+          <div className="bg-black rounded-3xl border-[3px] border-[#FCEE57]/40 overflow-x-auto shadow-2xl">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-[#666666] text-white">
+                  <th className="px-5 py-4 font-bold">Type</th>
+                  <th className="px-5 py-4 font-bold">Name</th>
+                  <th className="px-5 py-4 font-bold">Contact</th>
+                  <th className="px-5 py-4 font-bold">City / Subject</th>
+                  <th className="px-5 py-4 font-bold">Message</th>
+                  <th className="px-5 py-4 font-bold">Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {leads.map((lead) => (
+                  <tr key={lead.id} className="border-b border-[#666666]/40 align-top">
+                    <td className="px-5 py-4">
+                      <span className="bg-[#FCEE57] text-black text-xs font-bold px-2.5 py-1 rounded-full">
+                        {typeLabel[lead.type] ?? lead.type}
+                      </span>
+                    </td>
+                    <td className="px-5 py-4 text-white font-medium">{lead.name}</td>
+                    <td className="px-5 py-4 text-[#BCBCBC]">
+                      <a href={`mailto:${lead.email}`} className="hover:text-[#FCEE57] underline break-all">
+                        {lead.email}
+                      </a>
+                      <br />
+                      <a href={`tel:${lead.phone}`} className="hover:text-[#FCEE57] underline whitespace-nowrap">
+                        {lead.phone}
+                      </a>
+                      {lead.extra && <div className="text-white mt-1">{lead.extra}</div>}
+                    </td>
+                    <td className="px-5 py-4 text-white">
+                      {lead.city && <div>{lead.city}</div>}
+                      {lead.subject && <div className="text-[#BCBCBC]">{lead.subject}</div>}
+                    </td>
+                    <td className="px-5 py-4 text-[#BCBCBC] max-w-[280px]">{lead.message}</td>
+                    <td className="px-5 py-4 text-[#BCBCBC] whitespace-nowrap">
+                      {new Date(lead.created_at).toLocaleString("en-IN")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-3 mt-6">
+              {currentPage > 1 ? (
+                <Link
+                  href={`/admin?page=${currentPage - 1}`}
+                  className="bg-white hover:bg-black hover:text-white text-black text-sm font-bold px-4 py-2 rounded-lg border transition"
+                >
+                  Previous
+                </Link>
+              ) : (
+                <span className="bg-white/20 text-white/40 text-sm font-bold px-4 py-2 rounded-lg border border-white/10 cursor-not-allowed">
+                  Previous
+                </span>
+              )}
+              <span className="text-sm text-[#BCBCBC]">
+                Page {currentPage} of {totalPages}
+              </span>
+              {currentPage < totalPages ? (
+                <Link
+                  href={`/admin?page=${currentPage + 1}`}
+                  className="bg-white hover:bg-black hover:text-white text-black text-sm font-bold px-4 py-2 rounded-lg border transition"
+                >
+                  Next
+                </Link>
+              ) : (
+                <span className="bg-white/20 text-white/40 text-sm font-bold px-4 py-2 rounded-lg border border-white/10 cursor-not-allowed">
+                  Next
+                </span>
+              )}
+            </div>
+          )}
+        </>
       )}
 
       <p className="mt-6 text-xs text-[#BCBCBC]">

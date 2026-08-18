@@ -79,15 +79,6 @@ export const FindPohewalaSection: React.FC = () => {
 
   return (
     <section className="relative w-full overflow-visible">
-      <style>{`
-        @keyframes bowl-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-        .embla-container { display: flex; gap: 12px; }
-        .embla-slide { flex: 0 0 100%; min-width: 0; }
-        @media (min-width: 480px) { .embla-slide { flex: 0 0 calc((100% - 12px) / 2); } }
-        @media (min-width: 768px) { .embla-slide { flex: 0 0 calc((100% - 24px) / 3); } }
-        @media (min-width: 1024px) { .embla-slide { flex: 0 0 calc((100% - 36px) / 4); } }
-        @media (min-width: 1280px) { .embla-slide { flex: 0 0 calc((100% - 48px) / 5); } }
-      `}</style>
 
       {/* Yellow background with notch */}
       <div

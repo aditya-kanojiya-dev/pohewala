@@ -28,15 +28,15 @@ export const Navbar: React.FC = () => {
         {/* Brand Logo */}
         <Link href="/" className="flex items-center group">
           <div className="p-1 group-hover:scale-105 transition-transform">
-            <Image
-              src="/images/logo.png"
-              alt="Pohewala Logo"
-              loading="eager"
-              width={370}
-              height={103}
-              priority
-              className="w-[140px] sm:w-[185px] h-auto object-contain"
-            />
+<Image
+  src="/images/Navlogo.png"
+  alt="Pohewala Logo"
+  loading="eager"
+  width={370}
+  height={103}
+  priority
+  className="w-[140px] sm:w-[185px] h-auto object-contain"
+/>
           </div>
         </Link>
 

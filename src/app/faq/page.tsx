@@ -282,9 +282,6 @@ export default function FAQPage() {
 
       {/* 3. FIND POHEWALA WHEREVER YOU ARE SECTION */}
       <section className="relative overflow-hidden rounded-[28px] mx-4 sm:mx-8 lg:mx-12 bg-[#FCEE57]">
-        <style>{`
-          @keyframes float-soft { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-        `}</style>
         <div
           className="absolute rounded-full bg-white"
           style={{ width: "280px", height: "280px", left: "-90px", top: "20%", filter: "blur(70px)", opacity: ".25" }}

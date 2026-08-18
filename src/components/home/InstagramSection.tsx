@@ -9,7 +9,7 @@ const instagramPosts = [
   { id: 1, image: "/images/gallery1.jpg", alt: "Poha bowl on table" },
   { id: 2, image: "/images/gallery2.jpg", alt: "Poha preparation" },
   { id: 3, image: "/images/Blogs/blog.jpg", alt: "Pohewala outlet" },
-  { id: 4, image: "/images/store.jpg", alt: "Pohewala store front" },
+  { id: 4, image: "/images/store1.jpg", alt: "Pohewala store front" },
   { id: 5, image: "/images/poha-bowl-small.png", alt: "Fresh poha bowl" },
   { id: 6, image: "/images/spread.png", alt: "Poha feast spread" },
   { id: 7, image: "/images/poha-card.png", alt: "Poha menu card" },

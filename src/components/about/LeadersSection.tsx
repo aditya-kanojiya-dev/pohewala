@@ -31,31 +31,35 @@ export const LeadersSection: React.FC = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
-      className="w-full bg-[#000000]"
+      className="w-full"
     >
       <div className="flex flex-col md:flex-row items-stretch shadow-2xl overflow-visible">
         <motion.div
           variants={fromLeft}
-          className="bg-[#FCEE57] text-black font-black select-none flex items-center justify-center md:w-20 md:self-center md:h-[500px] py-5 md:py-0 md:rounded-r-[40px]"
+          className="bg-[#FCEE57] text-black font-black select-none flex items-center justify-center md:w-25 md:self-center md:h-[500px] py-5 md:py-0 md:rounded-r-[40px]"
         >
           <span className="font-serif md:rotate-180 md:[writing-mode:vertical-rl] text-2xl tracking-[0.5em]">
             LEADERS
           </span>
         </motion.div>
         <motion.div
-          variants={fadeUp}
-          className="relative w-full min-h-[260px] md:w-[40%] md:h-[440px] md:self-center md:-ml-10 md:-mr-10 md:z-10 overflow-hidden"
-        >
-          <Image
-            src="/images/founders.png"
-            alt="Pohewala Founders"
-            fill
-            loading="eager"
-            fetchPriority="high"
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, 40vw"
-          />
-        </motion.div>
+  variants={fadeUp}
+  className="relative w-full min-h-[300px] md:w-[37%] md:h-[520px] md:self-center md:z-10 " 
+  // Changed: min-h-[260px] → min-h-[320px], h-[440px] → h-[520px]
+>
+  <Image
+    src="/images/founder.png"
+    alt="Pohewala Founders"
+    fill
+    loading="eager"
+    fetchPriority="high"
+    className="object-cover rounded-3xl"
+    sizes="(max-width: 760px) 100vw, 40vw"
+    onError={(e) => {
+      console.error('Image failed to load:', e);
+    }}
+  />
+</motion.div>
         <motion.div
           variants={fromRight}
           className="bg-[#FCEE57] flex-1 md:self-center md:h-[500px] md:-ml-46 md:rounded-l-[40px] text-black p-8 sm:p-10 space-y-4 md:pl-56 md:pr-36 flex flex-col justify-center"

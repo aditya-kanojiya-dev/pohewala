@@ -163,17 +163,17 @@ export default function TermsPage() {
             </Body>
             <div className="pt-1 space-y-1.5 text-white leading-[1.7]">
               <p>Contact us at:</p>
-              <p>Email: chahulcreations@gmail.com</p>
               <p>
-                Phone:{" "}
+                Email:{" "}
                 <a
-                  href="tel:+919923000480"
+                  href="mailto:Pohewalacare@gmail.com"
                   className="text-[#FCEE57] underline font-medium hover:text-white transition"
                 >
-                  +91 9923000480
+                  Pohewalacare@gmail.com
                 </a>
               </p>
-              <p>Address: Ghole bhavan, bus stop road, Medical square Nagpur</p>
+              <p>Phone: +91-9923000480</p>
+              <p>Address: 4th Floor, Guruprasad Apartment, Taj Nagar, near Tukdogi Putla Square, Nagpur-440027, Maharashtra.</p>
             </div>
           </Section>
         </div>

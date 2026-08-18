@@ -72,45 +72,6 @@ export const FromSimpleIdeaSection: React.FC = () => {
 
   return (
     <section className="w-full">
-      <style>{`
-        @keyframes vehicle-drive {
-          0% { left: -6%; }
-          10% { left: 10%; }
-          30% { left: 30%; }
-          50% { left: 50%; }
-          70% { left: 70%; }
-          90% { left: 90%; }
-          100% { left: 106%; }
-        }
-        @keyframes vehicle-react {
-          0%, 100% { transform: scale(1) rotate(0deg); }
-          9% { transform: scale(1); }
-          10% { transform: scale(1.25) rotate(-6deg); }
-          12% { transform: scale(1) rotate(0deg); }
-          29% { transform: scale(1); }
-          30% { transform: scale(1.25) rotate(6deg); }
-          32% { transform: scale(1) rotate(0deg); }
-          49% { transform: scale(1); }
-          50% { transform: scale(1.25) rotate(-6deg); }
-          52% { transform: scale(1) rotate(0deg); }
-          69% { transform: scale(1); }
-          70% { transform: scale(1.25) rotate(6deg); }
-          72% { transform: scale(1) rotate(0deg); }
-          89% { transform: scale(1); }
-          90% { transform: scale(1.25) rotate(-6deg); }
-          92% { transform: scale(1) rotate(0deg); }
-        }
-        @keyframes card-react {
-          0% { transform: scale(1.3) rotate(-5deg); }
-          3% { transform: scale(1) rotate(0deg); }
-          7%, 100% { transform: scale(1) rotate(0deg); }
-        }
-        .vehicle-bob { animation: vehicle-react 20s linear infinite; }
-        .milestone-badge { animation: card-react 20s linear infinite; }
-        @media (prefers-reduced-motion: reduce) {
-          .vehicle-bob, .milestone-badge { animation: none; }
-        }
-      `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-16">

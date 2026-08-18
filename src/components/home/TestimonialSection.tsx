@@ -89,10 +89,6 @@ export const TestimonialSection: React.FC = () => {
 
   return (
     <section className="relative w-full bg-pohe-gradient border-t-[6px] border-[#FCEE57] overflow-hidden">
-      <style>{`
-        @keyframes float-star { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-8px) rotate(8deg)} }
-        @keyframes float-star-delayed { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(6px) rotate(-6deg)} }
-      `}</style>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#FCEE57]/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />

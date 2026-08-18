@@ -32,11 +32,6 @@ export const WhyChooseUsSection: React.FC = () => {
     <section
       className="w-full overflow-hidden bg-pohe-gradient"
     >
-      <style>{`
-        @keyframes pulse-glow { 0%,100%{opacity:.08} 50%{opacity:.14} }
-        @keyframes drift-slow { 0%,100%{transform:translate(0,0)} 50%{transform:translate(8px,-10px)} }
-        @media (max-width: 640px) { .wcu-inner { padding-top: 60px !important; padding-bottom: 60px !important; } }
-      `}</style>
 
       <div className="relative w-full h-[2px] bg-[#FCEE57] z-10" />
 

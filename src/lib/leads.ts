@@ -62,12 +62,20 @@ export async function createLead(input: LeadInput): Promise<Lead> {
   return rows[0];
 }
 
-export async function listLeads(limit = 100): Promise<Lead[]> {
+export async function listLeads(limit = 25, offset = 0): Promise<Lead[]> {
   await ensureTables();
   const { rows } = await getPool().query<Lead>(
     `SELECT id, type, name, email, phone, city, subject, message, extra, created_at
-     FROM leads ORDER BY created_at DESC LIMIT $1`,
-    [limit]
+     FROM leads ORDER BY created_at DESC LIMIT $1 OFFSET $2`,
+    [limit, offset]
   );
   return rows;
+}
+
+export async function countLeads(): Promise<number> {
+  await ensureTables();
+  const { rows } = await getPool().query<{ count: string }>(
+    `SELECT COUNT(*)::text AS count FROM leads`
+  );
+  return parseInt(rows[0].count, 10);
 }

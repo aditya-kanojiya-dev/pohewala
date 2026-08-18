@@ -21,10 +21,6 @@ const itemVariants = {
 export const CTASection: React.FC = () => {
   return (
     <section className="relative w-full bg-pohe-gradient py-16 md:py-24 lg:py-[200px]">
-      <style>{`
-        @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(255,255,255,.4)} 70%{box-shadow:0 0 0 12px rgba(255,255,255,0)} 100%{box-shadow:0 0 0 0 rgba(255,255,255,0)} }
-        .call-btn { animation: pulse-ring 2.5s ease-in-out infinite; }
-      `}</style>
       <motion.div
         variants={containerVariants}
         initial="hidden"
