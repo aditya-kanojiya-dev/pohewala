@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
           {/* Column 1: Brand Info */}
           <div className="space-y-4">
             <Image
-              src="/images/logo.png"
+              src="/images/Navlogo.png"
               alt="Pohewala Logo"
               width={370}
               height={103}
