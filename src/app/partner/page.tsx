@@ -119,7 +119,7 @@ export default function PartnerPage() {
                   <ImagePlaceholder
                     label="Pohewala storefront at night"
                     aspectRatio="aspect-video lg:aspect-auto"
-                    imageSrc="/images/store1.jpg"
+                    imageSrc="/images/store1.webp"
                     className="w-full h-full"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition" />
@@ -256,7 +256,7 @@ export default function PartnerPage() {
             <ImagePlaceholder
               label="QSR cafe interior with seating"
               aspectRatio="aspect-[4/3]"
-              imageSrc="/images/gallery2.jpg"
+              imageSrc="/images/gallery2.webp"
               className="w-full"
             />
           </div>
@@ -311,7 +311,7 @@ export default function PartnerPage() {
             <ImagePlaceholder
               label="Sports cafe gaming and pool lounge"
               aspectRatio="aspect-[4/3]"
-              imageSrc="/images/Blogs/blog.jpg"
+              imageSrc="/images/Blogs/blog.webp"
               className="w-full"
             />
           </div>
@@ -323,7 +323,7 @@ export default function PartnerPage() {
             <ImagePlaceholder
               label="Signature store dine-in seating area"
               aspectRatio="aspect-[4/3]"
-              imageSrc="/images/store1.jpg"
+              imageSrc="/images/store1.webp"
               className="w-full"
             />
           </div>

@@ -48,7 +48,7 @@ export const LeadersSection: React.FC = () => {
   // Changed: min-h-[260px] → min-h-[320px], h-[440px] → h-[520px]
 >
   <Image
-    src="/images/founder.png"
+    src="/images/founder.webp"
     alt="Pohewala Founders"
     fill
     loading="eager"

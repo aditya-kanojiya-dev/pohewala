@@ -86,7 +86,7 @@ const MiniBowl: React.FC<MiniBowlProps> = ({
         }}
       />
       <Image
-        src="/images/poha-bowl-small.png"
+        src="/images/poha-bowl-small.webp"
         alt={variant.label}
         width={496}
         height={479}
@@ -264,7 +264,7 @@ export const HeroSection: React.FC = () => {
                 className="w-full h-full relative"
               >
                 <Image
-                  src="/images/poha-bowl.png"
+                  src="/images/poha-bowl.webp"
                   alt={VARIANTS[activeMini].label}
                   width={496}
                   height={479}
@@ -373,7 +373,7 @@ export const HeroSection: React.FC = () => {
                   className="w-full h-full relative"
                 >
                   <Image
-                    src="/images/poha-bowl.png"
+                    src="/images/poha-bowl.webp"
                     alt={VARIANTS[activeMini].label}
                     width={496}
                     height={479}

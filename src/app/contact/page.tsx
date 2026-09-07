@@ -354,7 +354,7 @@ export default function ContactPage() {
             <div className="lg:col-span-5 relative hidden lg:block">
               <div className="absolute inset-x-0 bottom-0 -top-126 overflow-hidden">
                 <Image
-                  src="/images/contact.png"
+                  src="/images/contact.webp"
                   alt="Pohewala support team member"
                   fill
                   priority
@@ -368,7 +368,7 @@ export default function ContactPage() {
             <div className="lg:hidden">
               <div className="relative aspect-[4/5] overflow-hidden rounded-t-3xl">
                 <Image
-                  src="/images/contact.png"
+                  src="/images/contact.webp"
                   alt="Pohewala support team member"
                   fill
                   priority
@@ -431,24 +431,39 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                id: "PW32owq7ZTg",
-                title: "Famous POHEWALA #nagpur",
+                id: "B7WsfXaihWg",
+                title: "RAIGARH, GET READY — Your favourite Poha is coming to Raigarh",
                 channel: "YouTube",
               },
               {
-                id: "pv7iKC7r28U",
-                title: "Nagpur's Famous Multi Variety Poha at Pohewala",
+                id: "ahGPxo8vYak",
+                title: "Poha ka taste ho toh ek baar Pohewala zaroor try karo",
                 channel: "YouTube",
               },
               {
-                id: "b2_O2KuGh2E",
-                title: "Pohewala Nagpur | Street Food Vlog",
+                id: "NNWvqwNref4",
+                title: "Good Food. Great Ambience. Pure Pohewala Vibes",
+                channel: "YouTube",
+              },
+              {
+                id: "Cu418cKAVWQ",
+                title: "When customers say it, we listen",
+                channel: "YouTube",
+              },
+              {
+                id: "zbY4Q1qndMk",
+                title: "Poha but make it EXTRA — Crunchy, spicy, tangy, desi",
+                channel: "YouTube",
+              },
+              {
+                id: "wv5ZjpfAdv0",
+                title: "When a tourist tries our Vada Pav",
                 channel: "YouTube",
               },
             ].map((v, i) => (
               <Reveal key={v.id} delay={i * 0.1} className="h-full">
                 <a
-                  href={`https://www.youtube.com/watch?v=${v.id}`}
+                  href={`https://www.youtube.com/shorts/${v.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden border-[3px] border-black shadow-[6px_6px_0_0_rgba(0,0,0,0.45)] hover:-translate-y-1.5 hover:shadow-[8px_8px_0_0_rgba(0,0,0,0.45)] transition"
@@ -456,10 +471,10 @@ export default function ContactPage() {
                   <div className="relative aspect-video bg-black overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`}
+                      src={`https://i.ytimg.com/vi/${v.id}/frame0.jpg`}
                       onError={(e) => {
                         const img = e.currentTarget;
-                        if (img.src.includes("maxresdefault")) {
+                        if (img.src.includes("frame0")) {
                           img.src = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
                         }
                       }}

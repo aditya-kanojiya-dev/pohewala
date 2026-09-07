@@ -127,7 +127,7 @@ export default function AboutPage() {
           className="bg-black rounded-[36px] p-6 sm:p-10 lg:p-12 shadow-[12px_12px_0_0_rgba(252,238,87,0.4)] relative overflow-hidden border-[3px] border-black"
         >
           <Image
-            src="/images/ingredients.png"
+            src="/images/ingredients.webp"
             alt="What Makes Pohewala Different"
             width={2880}
             height={1280}

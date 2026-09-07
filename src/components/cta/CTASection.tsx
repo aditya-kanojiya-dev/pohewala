@@ -35,7 +35,7 @@ export const CTASection: React.FC = () => {
           >
             <div className="relative w-[180px] sm:w-[220px] md:w-[280px] lg:w-[430px] h-[260px] sm:h-[320px] md:h-[400px] lg:h-[540px] group-hover:-translate-y-2 transition-transform duration-500 ease-out">
               <Image
-                src="/images/phone.png"
+                src="/images/phone.webp"
                 alt="Pohewala mobile app interface"
                 fill
                 className="object-contain"

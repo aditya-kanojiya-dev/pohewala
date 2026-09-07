@@ -4,10 +4,11 @@ import Image from "next/image";
 interface InstagramCardProps {
   image: string;
   alt: string;
+  href?: string;
 }
 
-export const InstagramCard: React.FC<InstagramCardProps> = ({ image, alt }) => {
-  return (
+export const InstagramCard: React.FC<InstagramCardProps> = ({ image, alt, href }) => {
+  const content = (
     <div className="group w-[250px] h-[430px] overflow-hidden cursor-pointer rounded-[20px] shadow-[0_8px_24px_rgba(0,0,0,.1)] hover:shadow-[0_16px_40px_rgba(0,0,0,.18)] transition-all duration-500 ease-out">
       <div className="w-full h-full relative overflow-hidden rounded-[20px]">
         <Image
@@ -40,5 +41,13 @@ export const InstagramCard: React.FC<InstagramCardProps> = ({ image, alt }) => {
         </div>
       </div>
     </div>
+  );
+
+  if (!href) return content;
+
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {content}
+    </a>
   );
 };

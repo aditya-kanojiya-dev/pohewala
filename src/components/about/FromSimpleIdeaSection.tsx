@@ -87,7 +87,7 @@ export const FromSimpleIdeaSection: React.FC = () => {
 
           <div className="relative min-h-[280px] sm:min-h-[400px] lg:min-h-[400px]">
             <Image
-              src="/images/store-logo.png"
+              src="/images/store-logo.webp"
               alt="Pohewala Outlet Storefront Illustration"
               fill
               className="object-contain"
@@ -107,7 +107,7 @@ export const FromSimpleIdeaSection: React.FC = () => {
           >
             <span className="vehicle-bob inline-block">
               <Image
-                src="/images/delivery-man.png"
+                src="/images/delivery-man.webp"
                 alt=""
                 width={56}
                 height={56}

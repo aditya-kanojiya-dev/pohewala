@@ -10,16 +10,25 @@ import { MapPin, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 const states = [
   { id: "mh", label: "Maharashtra" },
   { id: "cg", label: "Chhattisgarh" },
+  { id: "mp", label: "Madhya Pradesh" },
   { id: "ka", label: "Karnataka" },
+  { id: "gj", label: "Gujarat" },
 ];
 
 const outlets = [
-  { id: 1, city: "Mumbai", image: "/images/store-outlets.png", count: 19 },
-  { id: 2, city: "Pune", image: "/images/store-outlets.png", count: 12 },
-  { id: 3, city: "Nagpur", image: "/images/store-outlets.png", count: 8 },
-  { id: 4, city: "Nashik", image: "/images/store-outlets.png", count: 5 },
-  { id: 5, city: "Thane", image: "/images/store-outlets.png", count: 3 },
-  { id: 6, city: "Aurangabad", image: "/images/store-outlets.png", count: 1 },
+  { id: 1, stateId: "mh", city: "Pune", image: "/images/store-outlets.webp", count: 2 },
+  { id: 2, stateId: "mh", city: "Nagpur", image: "/images/store-outlets.webp", count: 20 },
+  { id: 3, stateId: "mh", city: "Mumbai", image: "/images/store-outlets.webp", count: 2 },
+  { id: 4, stateId: "mh", city: "Jalna", image: "/images/store-outlets.webp", count: 1 },
+  { id: 5, stateId: "mh", city: "Akola", image: "/images/store-outlets.webp", count: 1 },
+  { id: 6, stateId: "mh", city: "Wardha", image: "/images/store-outlets.webp", count: 1 },
+  { id: 7, stateId: "mh", city: "Amravati", image: "/images/store-outlets.webp", count: 1 },
+  { id: 8, stateId: "cg", city: "Raipur", image: "/images/store-outlets.webp", count: 4 },
+  { id: 9, stateId: "cg", city: "Raigarh", image: "/images/store-outlets.webp", count: 1 },
+  { id: 10, stateId: "cg", city: "Geedam", image: "/images/store-outlets.webp", count: 1 },
+  { id: 11, stateId: "mp", city: "Pench", image: "/images/store-outlets.webp", count: 1 },
+  { id: 12, stateId: "ka", city: "Bangalore", image: "/images/store-outlets.webp", count: 4 },
+  { id: 13, stateId: "gj", city: "Gandhinagar", image: "/images/store-outlets.webp", count: 1 },
 ];
 
 function AnimatedCount({ to }: { to: number }) {
@@ -51,6 +60,7 @@ function AnimatedCount({ to }: { to: number }) {
 
 export const FindPohewalaSection: React.FC = () => {
   const [activeState, setActiveState] = useState("mh");
+  const visibleOutlets = outlets.filter((o) => o.stateId === activeState);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
@@ -99,7 +109,7 @@ export const FindPohewalaSection: React.FC = () => {
           animation: "bowl-float 4s ease-in-out infinite",
         }}
       >
-        <Image src="/images/left-leaf.png" alt="" width={390} height={901} className="w-full h-auto" />
+        <Image src="/images/left-leaf.webp" alt="" width={390} height={901} className="w-full h-auto" />
       </div>
 
       {/* Right leaf */}
@@ -112,7 +122,7 @@ export const FindPohewalaSection: React.FC = () => {
           animation: "bowl-float 4s ease-in-out infinite",
         }}
       >
-        <Image src="/images/right-leaf.png" alt="" width={348} height={854} className="w-full h-auto" />
+        <Image src="/images/right-leaf.webp" alt="" width={348} height={854} className="w-full h-auto" />
       </div>
 
       {/* Floating bowl badge */}
@@ -130,7 +140,7 @@ export const FindPohewalaSection: React.FC = () => {
             }}
           >
             <Image
-              src="/images/poha-bowl-small.png"
+              src="/images/poha-bowl-small.webp"
               alt="Poha Bowl"
               width={496} height={479}
               className="object-contain w-[85%] h-[85%] scale-[1.5]"
@@ -185,7 +195,7 @@ export const FindPohewalaSection: React.FC = () => {
       >
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="embla-container">
-            {outlets.map((o, i) => (
+            {visibleOutlets.map((o, i) => (
               <div key={o.id} className="embla-slide shrink-0">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}

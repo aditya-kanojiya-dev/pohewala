@@ -17,6 +17,7 @@ export const Navbar: React.FC = () => {
     { name: "Gallery", href: "/gallery" },
     { name: "Contact Us", href: "/contact" },
     { name: "FAQ", href: "/faq" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const isActive = (path: string) => pathname === path;
@@ -29,7 +30,7 @@ export const Navbar: React.FC = () => {
         <Link href="/" className="flex items-center group">
           <div className="p-1 group-hover:scale-105 transition-transform">
 <Image
-  src="/images/Navlogo.png"
+  src="/images/Navlogo.webp"
   alt="Pohewala Logo"
   loading="eager"
   width={370}

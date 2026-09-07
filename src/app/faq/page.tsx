@@ -133,23 +133,19 @@ export default function FAQPage() {
   ];
 
   const citiesList = [
-    { name: "Nagpur", count: "12" },
-    { name: "Hubli", count: "01" },
-    { name: "Bangalore", count: "02" },
+    { name: "Nagpur", count: "20" },
     { name: "Pune", count: "02" },
-    { name: "Bhilai", count: "01" },
-    { name: "Durg", count: "02" },
-    { name: "Bilaspur", count: "01" },
-    { name: "Raipur", count: "02" },
+    { name: "Mumbai", count: "02" },
+    { name: "Jalna", count: "01" },
     { name: "Akola", count: "01" },
-    { name: "Bhandara", count: "01" },
     { name: "Wardha", count: "01" },
-    { name: "Amravati", count: "02" },
-    { name: "Balaghat", count: "01" },
-    { name: "Buttibori", count: "01" },
-    { name: "Chandrapur", count: "01" },
-    { name: "Nashik", count: "01" },
-    { name: "New Mumbai", count: "01" },
+    { name: "Amravati", count: "01" },
+    { name: "Raipur", count: "04" },
+    { name: "Raigarh", count: "01" },
+    { name: "Geedam", count: "01" },
+    { name: "Pench", count: "01" },
+    { name: "Bangalore", count: "04" },
+    { name: "Gandhinagar", count: "01" },
   ];
 
   const toggleFAQ = (id: string) => {
@@ -299,7 +295,7 @@ export default function FAQPage() {
               Find Pohewala, Wherever You Are
             </h2>
             <p className="tagline text-[17px] sm:text-[19px] text-[#000000]">
-              &ldquo;Expanding to 20+ Cities and Beyond!&rdquo;
+              &ldquo;Expanding to 40+ Outlets and Beyond!&rdquo;
             </p>
             <div className="flex items-center justify-center gap-2">
               <span className="block w-16 h-[2px] bg-[#000000]/25 rounded-full" />
@@ -337,7 +333,7 @@ export default function FAQPage() {
               <ImagePlaceholder
                 label="Pohewala Multi-City Outlet Network Grid"
                 aspectRatio="aspect-[2880/1761]"
-                imageSrc="/images/outlets.png"
+                imageSrc="/images/outlets.webp"
                 className="w-full"
               />
             </div>

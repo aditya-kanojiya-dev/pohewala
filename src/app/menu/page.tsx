@@ -4,42 +4,62 @@ import React, { useState } from "react";
 import { CTASection } from "@/components/cta/CTASection";
 import { Reveal } from "@/components/shared/Reveal";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
-import { Utensils, Flame, Coffee, Sandwich, type LucideIcon } from "lucide-react";
+import {
+  Utensils,
+  Coffee,
+  CupSoda,
+  Sandwich,
+  Popcorn,
+  Wheat,
+  Soup,
+  Flame,
+  Leaf,
+  Milk,
+  Cake,
+  GlassWater,
+  type LucideIcon,
+} from "lucide-react";
+
+interface MenuVariant {
+  label?: string;
+  price: string;
+}
 
 interface MenuItem {
   name: string;
-  price: string;
-  desc: string;
-  tag?: string;
+  variants: MenuVariant[];
 }
 
 interface MenuCategory {
   key: string;
   title: string;
   icon: LucideIcon;
+  subtitle?: string;
   items: MenuItem[];
 }
 
+const single = (price: string): MenuVariant[] => [{ price }];
+const paired = (a: string, b: string): MenuVariant[] => [
+  { label: "Regular", price: a },
+  { label: "With Ice Cream", price: b },
+];
+
 const menuCategories: MenuCategory[] = [
   {
-    key: "signature",
-    title: "Signature Poha Varieties",
+    key: "poha",
+    title: "Special Poha's (9 Types of Poha)",
     icon: Utensils,
     items: [
-      { name: "Nagpuri Tarri Poha", price: "₹40", desc: "Authentic spicy black chickpea tarri poured over fluffy steamed poha", tag: "Bestseller" },
-      { name: "Indori Sev Poha", price: "₹35", desc: "Sweet & tangy Indori poha topped with crunchy Ratlami sev and pomegranate", tag: "Popular" },
-      { name: "Cheese Butter Poha", price: "₹50", desc: "Rich butter cooked poha loaded with melted mozzarella & cheddar", tag: "Chef Special" },
-      { name: "Sprouts Protein Poha", price: "₹45", desc: "Healthy steamed poha mixed with boiled moong sprouts & roasted peanuts", tag: "Healthy" },
-    ],
-  },
-  {
-    key: "snacks",
-    title: "Snacks & Sides",
-    icon: Sandwich,
-    items: [
-      { name: "Crispy Kanda Bhajiya", price: "₹40", desc: "Golden fried onion fritters served with spicy green chutney" },
-      { name: "Tarri Samosa (2 pcs)", price: "₹45", desc: "Hot potato samosas topped with Nagpur special tarri gravy" },
-      { name: "Sabudana Vada (2 pcs)", price: "₹50", desc: "Crispy tapioca patties served with sweet curd chutney" },
+      { name: "Kanda Poha", variants: single("₹40") },
+      { name: "Tarri Poha", variants: single("₹50") },
+      { name: "Matki Poha", variants: single("₹65") },
+      { name: "Dahi Poha", variants: single("₹60") },
+      { name: "Chiwda Poha", variants: single("₹60") },
+      { name: "Misal Poha", variants: single("₹60") },
+      { name: "Paneer Poha", variants: single("₹70") },
+      { name: "Indori Poha", variants: single("₹60") },
+      { name: "Jain Poha", variants: single("₹60") },
+      { name: "Kanda Poha (1 kg)", variants: single("₹199") },
     ],
   },
   {
@@ -47,16 +67,163 @@ const menuCategories: MenuCategory[] = [
     title: "Beverages",
     icon: Coffee,
     items: [
-      { name: "Nagpuri Special Chai", price: "₹15", desc: "Strong ginger & cardamom spiced cutting tea" },
-      { name: "Icy Cold Coffee", price: "₹40", desc: "Thick creamy chilled coffee with cocoa drizzle" },
-      { name: "Fresh Masala Lassi", price: "₹35", desc: "Traditional sweet churned buttermilk" },
+      { name: "Special Kadak Tea", variants: [{ label: "60 ml", price: "₹20" }, { label: "100 ml", price: "₹35" }] },
+      { name: "Ginger Tea", variants: [{ label: "60 ml", price: "₹25" }, { label: "100 ml", price: "₹45" }] },
+      { name: "Elaichi Tea", variants: [{ label: "60 ml", price: "₹25" }, { label: "100 ml", price: "₹45" }] },
+      { name: "Kulhad Tea", variants: [{ label: "60 ml", price: "₹30" }, { label: "100 ml", price: "₹50" }] },
+      { name: "Lemon Tea", variants: [{ label: "100 ml", price: "₹30" }] },
+      { name: "Hot Coffee", variants: [{ label: "100 ml", price: "₹40" }] },
+      { name: "Black Coffee", variants: [{ label: "100 ml", price: "₹35" }] },
+      { name: "Green Tea", variants: [{ label: "100 ml", price: "₹40" }] },
+      { name: "Green Tea With Honey", variants: [{ label: "100 ml", price: "₹50" }] },
+      { name: "Hot Milk", variants: [{ label: "100 ml", price: "₹40" }] },
+      { name: "Haldi Milk", variants: [{ label: "100 ml", price: "₹45" }] },
+      { name: "Bornvita Milk", variants: [{ label: "100 ml", price: "₹50" }] },
+      { name: "Boost", variants: [{ label: "100 ml", price: "₹50" }] },
+    ],
+  },
+  {
+    key: "seasonals",
+    title: "Seasonals",
+    icon: CupSoda,
+    items: [
+      { name: "Butter Milk", variants: [{ label: "Regular", price: "₹40" }] },
+      { name: "Lemon Juice", variants: [{ label: "Regular", price: "₹40" }] },
+      { name: "Aam Ras", variants: [{ label: "Regular", price: "₹50" }] },
+      { name: "Lassi", variants: paired("₹60", "₹80") },
+      { name: "Mango Lassi", variants: paired("₹80", "₹100") },
+    ],
+  },
+  {
+    key: "spring-roll",
+    title: "Spring Roll",
+    icon: Sandwich,
+    items: [
+      { name: "Veg Spring Roll", variants: single("₹129") },
+      { name: "Chilli Garlic", variants: single("₹149") },
+      { name: "Cheese Corn", variants: single("₹149") },
+      { name: "Dosa Roll", variants: single("₹129") },
+    ],
+  },
+  {
+    key: "snacks",
+    title: "Snacks",
+    icon: Popcorn,
+    items: [
+      { name: "Upma", variants: single("₹49") },
+      { name: "Veg Upma", variants: single("₹59") },
+      { name: "Ghee Upma", variants: single("₹69") },
+      { name: "Poha Nuggets", variants: single("₹69") },
+      { name: "Mung Nuggets", variants: single("₹89") },
+      { name: "Poha Cheese Corn Nuggets", variants: single("₹119") },
+    ],
+  },
+  {
+    key: "paratha",
+    title: "Paratha",
+    icon: Wheat,
+    items: [
+      { name: "Methi Paratha", variants: single("₹59") },
+      { name: "Aloo Paratha", variants: single("₹79") },
+      { name: "Mix Veg Paratha", variants: single("₹89") },
+      { name: "Paneer Paratha", variants: single("₹110") },
+      { name: "Puran Poli", variants: single("₹69") },
+    ],
+  },
+  {
+    key: "pav",
+    title: "Pav Specials",
+    icon: Soup,
+    items: [
+      { name: "Vada Pav (Single)", variants: single("₹29") },
+      { name: "Cheese Vada Pav", variants: single("₹49") },
+      { name: "Makai Palak Vada Pav", variants: single("₹49") },
+      { name: "Misal Pav", variants: single("₹99") },
+      { name: "Special Misal Pav", variants: single("₹129") },
+      { name: "Veg Keema Pav", variants: single("₹99") },
+      { name: "Veg Bhurji Pav", variants: single("₹99") },
+      { name: "Bun Maska", variants: single("₹49") },
+      { name: "Bun Maska Grilled", variants: single("₹59") },
+    ],
+  },
+  {
+    key: "maggie",
+    title: "Maggie",
+    icon: Soup,
+    items: [
+      { name: "Masala Maggie", variants: single("₹59") },
+      { name: "Veg Maggie", variants: single("₹79") },
+      { name: "Cheese Maggie", variants: single("₹89") },
+      { name: "Paneer Maggie", variants: single("₹89") },
+      { name: "Special Tarri Maggie", variants: single("₹89") },
+      { name: "Punjabi Maggie", variants: single("₹89") },
+      { name: "Cheese Corn Maggie", variants: single("₹99") },
+    ],
+  },
+  {
+    key: "fries",
+    title: "French Fries",
+    icon: Flame,
+    items: [
+      { name: "Salted Fries", variants: single("₹89") },
+      { name: "Masala Fries", variants: single("₹99") },
+      { name: "Cheesy Fries", variants: single("₹129") },
+      { name: "Peri Peri Fries", variants: single("₹99") },
+      { name: "Honey Chilly Potato", variants: single("₹179") },
+    ],
+  },
+  {
+    key: "upvas",
+    title: "Upvas Specials",
+    icon: Leaf,
+    items: [
+      { name: "Sabudana Vada", variants: single("₹49") },
+      { name: "Sabudana Khichdi", variants: single("₹79") },
+      { name: "Sabudana Khichdi With Dahi", variants: single("₹99") },
+    ],
+  },
+  {
+    key: "shakes",
+    title: "Special Shakes (With Ice Cream)",
+    icon: Milk,
+    items: [
+      { name: "Strawberry Shake", variants: single("₹99") },
+      { name: "Butterscotch Shake", variants: single("₹99") },
+      { name: "Mango Shake", variants: single("₹99") },
+      { name: "Oreo Shake", variants: single("₹119") },
+      { name: "Chocochips Shake", variants: single("₹119") },
+      { name: "Kitkat Shake", variants: single("₹119") },
+      { name: "Chocolate Shake", variants: single("₹119") },
+      { name: "Brownie Shake", variants: single("₹119") },
+    ],
+  },
+  {
+    key: "cold-coffee",
+    title: "Cold Coffee",
+    icon: GlassWater,
+    items: [
+      { name: "Cold Coffee", variants: paired("₹79", "₹99") },
+      { name: "Creamy Cold Coffee", variants: paired("₹99", "₹119") },
+      { name: "Chocolate Cold Coffee", variants: paired("₹99", "₹119") },
+      { name: "Choco Cold Coffee", variants: paired("₹99", "₹119") },
+    ],
+  },
+  {
+    key: "sweet",
+    title: "Sweet Delight",
+    icon: Cake,
+    items: [
+      { name: "Gulab Jamun", variants: [{ label: "Regular", price: "₹30" }] },
+      { name: "Choco Lava Cake", variants: [{ label: "Regular", price: "₹79" }] },
+      { name: "Chocolate Brownie", variants: paired("₹89", "₹109") },
+      { name: "Walnut Brownie", variants: paired("₹99", "₹119") },
     ],
   },
 ];
 
 const tabs = [
   { key: "all", label: "All" },
-  ...menuCategories.map((c) => ({ key: c.key, label: c.title.split(" ")[0] })),
+  ...menuCategories.map((c) => ({ key: c.key, label: c.title })),
 ];
 
 const container = {
@@ -104,7 +271,7 @@ export default function MenuPage() {
         </section>
 
         {/* 2. CATEGORY TABS */}
-        <Reveal className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-3">
             {tabs.map((t) => {
               const isActive = active === t.key;
@@ -172,22 +339,25 @@ export default function MenuPage() {
                           <h3 className="font-bold text-white text-lg font-serif leading-snug shrink-0">
                             {mi.name}
                           </h3>
-                          {mi.tag && (
-                            <span className="shrink-0 inline-flex items-center gap-1 text-[10px] font-black text-[#FCEE57] uppercase tracking-wider border border-[#FCEE57]/40 rounded-full px-2 py-0.5 -translate-y-0.5">
-                              <Flame className="w-3 h-3" /> {mi.tag}
-                            </span>
-                          )}
                           <span
                             aria-hidden
                             className="flex-1 border-b border-dotted border-[#666666] group-hover:border-[#FCEE57]/70 transition-colors duration-300"
                           />
-                          <span className="shrink-0 font-black text-[#FCEE57] text-base">
-                            {mi.price}
-                          </span>
+                          <div className="shrink-0 flex items-center gap-3">
+                            {mi.variants.map((v, i) => (
+                              <span key={i} className="flex items-baseline gap-1">
+                                {v.label && (
+                                  <span className="text-[10px] font-semibold text-[#BCBCBC] uppercase tracking-wide">
+                                    {v.label}
+                                  </span>
+                                )}
+                                <span className="font-black text-[#FCEE57] text-base whitespace-nowrap">
+                                  {v.price}
+                                </span>
+                              </span>
+                            ))}
+                          </div>
                         </div>
-                        <p className="text-sm text-[#BCBCBC] leading-relaxed mt-2 max-w-[90%]">
-                          {mi.desc}
-                        </p>
                       </motion.div>
                     ))}
                   </div>

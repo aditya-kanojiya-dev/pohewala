@@ -1,22 +1,15 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { BlogCard } from "./blogs/BlogCard";
+import { blogPosts } from "@/lib/blogs";
 
-const blogPost = {
-  title:
-    "Nothing Beats The Magic Of\nWatching The Monsoon Rain\nA Plate Of Piping Hot,\nCrispy Bhajiya.",
-  author: "John Wilson",
-  avatar: "/images/Blogs/blog-avatar1.png",
-  image: "/images/Blogs/blog-poster.png",
-  date: "10 July 2026",
-  views: 100,
-  comments: 50,
-};
-
-const blogPosts = [false, true, false].map((reverseLayout) => ({
-  ...blogPost,
+// ponytail: homepage shows the same layout as before — the first post only,
+// with the original alternating card layout. /blog shows all posts.
+const homePosts = [false, true, false].map((reverseLayout) => ({
+  ...blogPosts[0],
   reverseLayout,
 }));
 
@@ -45,7 +38,7 @@ export const BlogsSection: React.FC = () => {
           className="flex justify-center mt-[70px]"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]">
-            {blogPosts.map((post, i) => (
+            {homePosts.map((post, i) => (
               <motion.div
                 key={i}
                 variants={{
@@ -53,7 +46,9 @@ export const BlogsSection: React.FC = () => {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
                 }}
               >
-                <BlogCard {...post} />
+                <Link href="/blog" className="block h-full">
+                  <BlogCard {...post} />
+                </Link>
               </motion.div>
             ))}
           </div>

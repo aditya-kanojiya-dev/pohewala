@@ -8,67 +8,72 @@ import { TestimonialCard } from "./testimonials/TestimonialCard";
 const testimonials = [
   {
     id: 1,
-    name: "Jenny Wilson",
-    designation: "Food Blogger",
-    image: "/images/Blogs/blog-avatar1.png",
+    name: "Vedant Lohabare",
+    designation: "Google Review",
     message:
-      "\"Perfectly fluffy, steaming hot, and topped with the perfect crunch of sev and onions. It's the ultimate comfort food breakfast that gets the authentic flavors exactly right.\"",
+      "\"I recently tried the poha at Pohewala, Ravinagar and I absolutely loved it. The poha was fresh, perfectly cooked, and had just the right taste. Definitely one of the best places for poha in Ravinagar!\"",
   },
   {
     id: 2,
-    name: "Robert Chen",
-    designation: "Chef",
-    image: "/images/Blogs/blog-avatar2.png",
+    name: "Sumedh Khare",
+    designation: "Google Review",
     message:
-      "\"Thick, creamy, and served icy cold with a wonderfully bold coffee kick. It's incredibly refreshing and a fantastic treat to beat the afternoon heat.\"",
+      "\"A good joint for having a variety of poha, but the Tarri Poha and Plain Poha remain undefeated.\"",
   },
   {
     id: 3,
-    name: "Sarah Patel",
-    designation: "Regular Customer",
-    image: "/images/Blogs/blog-avatar1.png",
+    name: "Nadeem Khan",
+    designation: "Google Review",
     message:
-      "\"The tarri poha is absolutely divine. The blend of spices and the aroma takes me straight back to the streets of Pune. Absolutely addictive!\"",
+      "\"Poha is their signature dish, but I liked their Upma very much. For those who savour spicy food, Moong Ussal is also available.\"",
   },
   {
     id: 4,
-    name: "Amit Sharma",
-    designation: "Food Critic",
-    image: "/images/Blogs/blog-avatar2.png",
+    name: "Prajwal Narnaware",
+    designation: "Google Review",
     message:
-      "\"I've had poha across the country, but nothing compares to this. The freshness, the texture, the balance of flavors—it's a masterpiece.\"",
+      "\"The location is good, the staff is very friendly and the food tastes so good. I come here daily just for the chai, poha and Maggi.\"",
   },
   {
     id: 5,
-    name: "Priya Kapoor",
-    designation: "Nutritionist",
-    image: "/images/Blogs/blog-avatar1.png",
+    name: "Bheshaj Vaishnav",
+    designation: "Google Review",
     message:
-      "\"Finally a healthy breakfast option that doesn't compromise on taste. Light, nutritious, and bursting with authentic Maharashtrian flavors.\"",
+      "\"Bohot hi accha tasty poha hai yaha ka. Kanda kaafi tasty tha. Mujhe yaha khane ke baad kahi aur ka poha pasand nahi aaya!\"",
   },
   {
     id: 6,
-    name: "David Kim",
-    designation: "Travel Blogger",
-    image: "/images/Blogs/blog-avatar2.png",
-    message:
-      "\"Cold coffee here is a game changer. Rich, velvety, and perfectly sweet—just what you need to recharge after exploring the city all day.\"",
+    name: "Nikhil Shelare",
+    designation: "Google Review",
+    message: "\"Best chai in Ravi Nagar!\"",
   },
   {
     id: 7,
-    name: "Meera Joshi",
-    designation: "Local Foodie",
-    image: "/images/Blogs/blog-avatar1.png",
+    name: "Jyothishree Lovely",
+    designation: "Google Review",
     message:
-      "\"Been coming here every weekend for months. The consistency is incredible—every single plate tastes as good as the first one I ever had.\"",
+      "\"Great place to go for different varieties of poha like Paneer, Matki, Chiwda, Tarri, Kanda, Missal and Indori. They also serve different varieties of Maggi and combo packs.\"",
   },
   {
     id: 8,
-    name: "Rahul Verma",
-    designation: "Office Worker",
-    image: "/images/Blogs/blog-avatar2.png",
+    name: "Rajesh Kumar Singh",
+    designation: "Google Review",
     message:
-      "\"Quick, affordable, and delicious. My go-to breakfast before work. The sev puri topping is the cherry on top—crunches in every bite!\"",
+      "\"I have visited this shop many times and always found the variety and taste awesome. It is a small but very nice place. A must-visit!\"",
+  },
+  {
+    id: 9,
+    name: "Ashiya Sheikh",
+    designation: "Google Review",
+    message:
+      "\"I visited Pohewala today and the taste was amazing! The poha was really delicious and fresh. I also loved how clean and hygienic the place was. Keep up the great taste and hygiene!\"",
+  },
+  {
+    id: 10,
+    name: "Mangesh P",
+    designation: "Google Review",
+    message:
+      "\"I have been enjoying their poha for a long time. Very good taste and good service. Truly appreciate the consistency and quality!\"",
   },
 ];
 

@@ -28,7 +28,7 @@ export const AboutSection: React.FC = () => {
               }}
             >
               <Image
-                src="/images/spread.png"
+                src="/images/spread.webp"
                 alt="Poha Feast Spread"
                 fill
                 className="object-contain"

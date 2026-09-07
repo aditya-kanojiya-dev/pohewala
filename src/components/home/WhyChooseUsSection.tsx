@@ -6,22 +6,22 @@ import { motion } from "framer-motion";
 
 const cards = [
   {
-    icon: "/images/poha-bowl-small.png",
+    icon: "/images/poha-bowl-small.webp",
     title: "Authentic Poha",
     desc: "Experience the true taste of tradition with our poha—a light, flavorful start to your wonderful day ahead."
   },
   {
-    icon: "/images/delivery-man.png",
+    icon: "/images/delivery-man.webp",
     title: "Home Delivery",
     desc: "Enjoy authentic Pohewala flavors comfortably at home with quick, hygienic delivery via Swiggy and Zomato."
   },
   {
-    icon: "/images/wallet.png",
+    icon: "/images/wallet.webp",
     title: "Low Cost",
     desc: "Our core mission has always been delivering nutritious, high-quality, and wholesome food at highly affordable prices."
   },
   {
-    icon: "/images/van.png",
+    icon: "/images/van.webp",
     title: "Bulk Food Order",
     desc: "Fresh, hygienic, and affordable bulk meals for events, offices, and parties. Timely delivery with authentic taste."
   },
