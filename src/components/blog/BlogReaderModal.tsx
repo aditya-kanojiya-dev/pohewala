@@ -54,8 +54,8 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({ post, onClose 
 
         <div className="p-6 sm:p-10">
           <div className="flex items-center gap-3 text-[13px] text-[#BCBCBC]">
-            <div className="w-9 h-9 rounded-full overflow-hidden relative ring-2 ring-[#FCEE57]">
-              <Image src={post.avatar} alt={post.author} fill sizes="36px" className="object-cover" />
+            <div className="w-9 h-9 rounded-full overflow-hidden relative ring-2 ring-[#FCEE57] flex items-center justify-center bg-[#FCEE57]">
+              <span className="font-bold text-black">{post.author.charAt(0)}</span>
             </div>
             <span className="font-semibold text-white">{post.author}</span>
             <span className="flex items-center gap-1">

@@ -5,7 +5,6 @@ import { Eye, MessageCircle, ArrowRight } from "lucide-react";
 interface BlogCardProps {
   title: string;
   author: string;
-  avatar: string;
   image: string;
   date: string;
   views: number;
@@ -16,7 +15,6 @@ interface BlogCardProps {
 export const BlogCard: React.FC<BlogCardProps> = ({
   title,
   author,
-  avatar,
   image,
   date,
   views,
@@ -40,8 +38,8 @@ export const BlogCard: React.FC<BlogCardProps> = ({
     <div className="h-[290px] p-6 flex flex-col">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0 ring-2 ring-[#BCBCBC]">
-            <Image src={avatar} alt={author} fill className="object-cover" sizes="40px" />
+          <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0 ring-2 ring-[#BCBCBC] bg-[#BCBCBC] flex items-center justify-center">
+            <span className="font-bold text-white">{author.charAt(0)}</span>
           </div>
           <span className="font-medium text-[15px] text-[#666666]">{author}</span>
         </div>

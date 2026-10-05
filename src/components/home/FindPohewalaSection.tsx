@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
@@ -61,20 +61,26 @@ function AnimatedCount({ to }: { to: number }) {
 export const FindPohewalaSection: React.FC = () => {
   const [activeState, setActiveState] = useState("mh");
   const visibleOutlets = outlets.filter((o) => o.stateId === activeState);
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: true,
-      align: "start",
-      slidesToScroll: 1,
-      containScroll: "trimSnaps",
-    },
-    [
+
+  const autoplay = useMemo(
+    () =>
       Autoplay({
         delay: 4000,
-        stopOnInteraction: false,
+        stopOnInteraction: true,
+        stopOnMouseEnter: true,
+        stopOnLastSnap: true,
       }),
-    ],
+    [],
   );
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [autoplay]);
+
+  // ponytail: outlet list per state, re-init the carousel so stale scroll
+  // positions don't leave blanks when the tab switches.
+  useEffect(() => {
+    emblaApi?.reInit();
+    emblaApi?.scrollTo(0, true);
+  }, [activeState, emblaApi]);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);

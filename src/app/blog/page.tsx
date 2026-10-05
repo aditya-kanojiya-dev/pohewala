@@ -39,8 +39,8 @@ const FeatureCard: React.FC<{ post: BlogPost; onOpen: (p: BlogPost) => void }> =
       </h2>
       <p className="text-[15px] text-[#666666] leading-relaxed mt-4">{post.excerpt}</p>
       <div className="flex items-center gap-3 mt-auto pt-6">
-        <div className="w-10 h-10 rounded-full overflow-hidden relative ring-2 ring-[#BCBCBC]">
-          <Image src={post.avatar} alt={post.author} fill sizes="40px" className="object-cover" />
+        <div className="w-10 h-10 rounded-full overflow-hidden relative ring-2 ring-[#BCBCBC] bg-[#BCBCBC] flex items-center justify-center">
+          <span className="font-bold text-white">{post.author.charAt(0)}</span>
         </div>
         <div className="text-sm">
           <p className="font-bold text-black">{post.author}</p>
@@ -76,7 +76,7 @@ export default function BlogPage() {
       {/* The rest of the paper */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 mb-8">
-          <h2 className="font-serif font-bold text-white text-xl sm:text-2xl">More Stories</h2>
+          <h2 className="font-serif font-bold text-white text-xl sm:text-3xl">More Stories</h2>
           <div className="flex-1 h-px bg-[#FCEE57]/30" />
         </div>
         <motion.div
@@ -84,7 +84,7 @@ export default function BlogPage() {
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
           variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-[40px] max-w-4xl"
+          className="grid grid-cols-1 md:grid-cols-3 gap-[20px] max-w-7xl"
         >
           {rest.map((post) => (
             <motion.div key={post.id} variants={fadeUp}>
